@@ -1,1 +1,3 @@
 blog/static/* linguist-vendored
+blog/templates/* linguist-vendored
+users/templates/* linguist-vendored
