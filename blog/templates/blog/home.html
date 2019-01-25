@@ -1,0 +1,167 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block title %} Blog - Home {% endblock title %}
+
+{% block content %}
+
+<!-- <div class="card mb-4">
+    <h5 class="card-header">Start a post</h5>
+    <form>
+        <div class="card-block">
+            <p class="card-text">
+                <textarea class="form-control" rows="3"></textarea>
+            </p>
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Publish</button>
+        </div>
+    </form>
+</div> -->
+{% for post in posts %}
+<!-- <div class="card mb-4">
+        <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+        <div class="card-body">
+          <h2 class="card-title">Post Title</h2>
+          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+          <a href="#" class="btn btn-primary">Read More &rarr;</a>
+        </div>
+        <div class="card-footer text-muted">
+          Posted on January 1, 2017 by
+          <a href="#">Start Bootstrap</a>
+        </div>
+      </div> -->
+<!-- style="text-decoration: none;color:#34495e"  -->
+<div class="shadow p-3 mb-5 bg-white">
+
+    <div class="pb-1">
+        <h4 class="blog-post-title media-heading">
+            <strong> <a class="blog-post-title" href="{% url 'post-detail' post.id%}">
+                    {{ post.title|title }}
+                </a></strong>
+        </h4>
+    </div>
+    <div class="media pb-1">
+        <img class="d-flex mr-3 rounded-circle" src="{{ post.author.profile.image.url }}" width="50" height="50" alt="" />
+        <div class="media-body">
+            <h6 class="text-secondary">
+                <strong>
+                    <a class="blog-post-author" href="{% url 'user-posts' post.author.username %}">
+                        {{ post.author }}
+                    </a>
+                </strong>
+                <!-- <span> {{ post.publish|timesince }} ago</span> -->
+            </h6>
+            <h6 class="text-secondary">
+                <span>Posted {{ post.publish|date:"M d, h:i a" }}</span>
+                <span class="mx-2">
+                    <i class="fa fa-eye fa-fw" aria-hidden="true"></i>
+                    {{ post.view_count }}
+                </span>
+                <a href="{% url 'post-detail' post.id%}#comment-list">
+                    <i class="fa fa-comments fa-fw" aria-hidden="true"></i>
+                    {{ post.comment_set.all.count }}</a>
+
+            </h6>
+        </div>
+    </div>
+    <div class="blog-post-content">
+        <p>{{ post.content }}</p>
+
+    </div>
+
+    <div class="d-flex bd-highlight">
+        <div class="mr-auto bd-highlight">
+            {% if post.tags.all %}
+            <!-- <p class="tags">{{ post.tags.all|join:" | " }}</p> -->
+            <!-- <span>
+                <i class="fa fa-tags fa-fw" aria-hidden="true"></i>
+            </span> -->
+            {% for tag in post.tags.all %}
+
+            <span class="badge badge-primary">
+                <i class="fa fa-tag fa-fw" aria-hidden="true"></i>{{ tag }}
+            </span>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <!-- <div class="bd-highlight">
+            <div class="text-secondary d-flex flex-row-reverse bd-highlight">
+                <div class="p-2 bd-highlight">
+                    <a href="{% url 'post-detail' post.id%}#comment-list">
+                        <i class="fa fa-comments fa-fw" aria-hidden="true"></i>&nbsp;
+                        {{ post.comment_set.all.count }}</a>
+                </div>
+                <div class="p-2 bd-highlight">
+                    <i class="fa fa-eye fa-fw" aria-hidden="true"></i>&nbsp;
+                    {{ post.view_count }}</div>
+            </div>
+        </div> -->
+    </div>
+
+    <!-- <div class="text-secondary d-flex flex-row-reverse bd-highlight">
+        <div class="p-2 bd-highlight">
+            <a href="{% url 'post-detail' post.id%}#comment-list">&#128491; {{ post.comment_set.all.count }} comments</a>
+        </div>
+        <div class="p-2 bd-highlight">&#128065; {{ post.view_count }} views</div>
+    </div> -->
+
+    <!--
+    <img class="d-flex mr-3 mt-0 rounded-circle" src="{{ post.author.profile.image.url }}" width="50" height="50" alt="">
+    <div class="media-body blog-post">
+        <h5 class="blog-post-title media-heading mb">
+            <strong> <a class="blog-post-title" href="{% url 'post-detail' post.id%}">
+                    {{ post.title|title }}
+                </a>
+            </strong>
+        </h5>
+        <div class="blog-post-meta mb-2 mt-2">
+                <div class="row ml-1">
+                    <h6 class="text-secondary">By
+                        <strong>
+                            <a class="blog-post-author" href="{% url 'user-posts' post.author.username %}">
+                                {{ post.author }}
+                            </a>
+                        </strong>
+                        <span> {{ post.publish|timesince }} ago</span>
+                    </h6>
+                </div>
+            </div>
+        <p class="blog-post-content">{{ post.content }}</p>
+        <div class="bottom-post">
+            <span class="text-secondary"> {{ post.publish|date:"M d, Y, h:i a" }} &#128491; 12 comments &#128065; 45 views</span>
+        </div>
+    </div> -->
+</div>
+{% empty %}
+<p>No posts.</p>
+{% endfor %}
+
+
+{% if is_paginated %}
+<nav>
+    <div class="pagination">
+        <span class="step-links">
+            <!-- <span class="current"> -->
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+            <!-- </span> -->
+            {% if page_obj.has_previous %}
+            <a class="btn btn-outline-primary" href="?page=1">&laquo; First</a>
+            <a class="btn btn-outline-primary" href="?page={{ page_obj.previous_page_number }}">&lsaquo; Previous</a>
+            {% endif %}
+            {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+            <a class="btn btn-primary" href="?page={{ num }}">{{ num }}</a>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %} <a class="btn btn-outline-primary" href="?page={{ num }}">{{ num }}</a>
+                {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                <a class="btn btn-outline-primary" href="?page={{ page_obj.next_page_number }}">Next &rsaquo;</a>
+                <a class="btn btn-outline-primary" href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
+                {% endif %}
+        </span>
+    </div>
+</nav>
+{% endif %}
+
+{% endblock content%}
