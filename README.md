@@ -1,47 +1,62 @@
 # bloggable
-A full-featured blog with Django
+A full-featured blog with Django framework. 
 
-# Python web development with Django
-I suppose you have python installed, as well as Django. If you don't have Django yet, just `pip install Django` at the shell prompt and you're good to go. If you do not also have Python installed, what are you waiting for? Go and do the work. 
-## 1. Create a project
-To create a project, run the following command  
+## Installation
+Assuming you have Python 3 et Django installed, bloggable is easy to install and deploy. If not proceed to [Python Setup and Usage](https://docs.python.org/3/using/index.html) page to install Python 3 and [How to install Django](https://docs.djangoproject.com/en/2.1/topics/install/) page to install Django. However if you are running a Linux system on your computer, you probably already have Python intsalled. Just run `python --version` in your terminal to check it. If you do have Python installed then just run `pip install Django` in your terminal to install Django and you are good to go.  
+Now, to to get __bloggable__ up and running on your computer, follow these steps:
+
+### 1. Clone the repository 
 ```
-$ django-admin startproject django_odyssey
-```  
-It creates a directory of the name of our django project. In this case it's __django_odyssey__. Inside that directory, we find:
-- `manage.py` : This file is a command-line utility that will allow us to perform operations on our web app, such as creating apps, making migrations, running the development server, etc. We don't need to edit it.
-- another directory with the name __django_odyssey__ and it contains
-    - `__init__.py` : The presence of this file indicates that djangoproject is a python module or package. It is empty.
-    - `settings.py` : This file contains all the settings of our web app, such as the database that we'll be using (SQLite by default), apps installed in our web app, etc. By default it contains initial basic settings that allows us to run a Django box out of the box.
-    - `urls.py` : This file takes care of matching routes to views. In other words, it contains URL patterns for all the views of the web app. Though each app has its own `urls.py`, they have to be referenced in project's `urls.py` file. 
-    - `wsgi.py` : It is a configuration file to run Django projects as Web Server Gateway Interface (WSGI) applications. Unless we're about to deploy our Django Web app in production, the default config works.
-
- ## 2. Create an app
- In order to avoid any confusion, let's define terms first.  What's a project in Django? And What's an app in Django?  
-
- __In Django, a project__ describes a Django web application defined primarily by a settings module. The project's root directory contains `manage.py` and all of the project's applications.  
-
- __An application in Django__ describes a Python package that interacts with various parts of the
-framework and provides some specific functionalities to a project. It may be reused in
-various projects. A Django app is practically some combination of models, views, templates, static files, and URLs. We can think of a Django project as our website which contains several
-applications such as blog, wiki, or forum, which can be used in other projects.
-
-So once the project is created, we then create apps. To create apps we have to do it from the project's root directory.
-
+git clone https://github.com/kakiang/bloggable.git
 ```
-$ cd django_odyssey
-
-$ python manage.py startapp blog
+### 2. Create a virtual environment
 ```
-This generates a directory named __blog__ inside the project'root directory. The following is the structure and files inside a Django app directory.  
+python -m venv bloggable_env
 
-### 2.1 App structure
-- `models.py` :
--  `views.py` : A Django view is a Python function that receives a web request and returns a web response. All the logic necessary to return the desired response is done inside the view. 
-- `urls.py` :
-- `admin.py` :
-- `apps.py` :
-- `tests.py` :
-- `templates` :
-    - `static files` :
+source bloggable_env/bin/activate
+```
+If you are using Windows you should run the activate script directly from the command shell. You shouldn't run `source bloggable_env/bin/activate`. 
 
+The above commands will create a virtual environment in the bloggable_env folder. As a reminder, a virtual environment is a an isolated Python environment that allows packages to be installed and to be used in a particular project. The packages installed in a virtual environmennt are not  installed system wide. That means, to be able to use those packages we have to switch to the virtual environment in which they are installed. That's what it's done with this command `source bloggable_env/bin/activate`. Virtual environment is a solution to potential dependency conflicts between the different projects that you may have. It's a good practice. But it's optional, as long as you don't have depedenncy conflicts.  
+
+### 3. Install depedencies
+
+Once you've created and activated your virtual environment, you are now ready to install the project dependencies. Move to the __bloggable__ root directory and run `pip install -r requirements.txt` in your terminal.
+```
+cd bloggable/
+
+pip install -r requirements.txt
+```
+ This command will install all the packages that __bloggable__ project uses. They are listed in the [requirements.txt](https://github.com/kakiang/bloggable/blob/master/requirements.txt) file, as well as the versions that have been used.
+
+ ## Usage
+
+ Once everything is set (just follow what's outlined above and it'll be fine, if not just raise an issue), it's time to run python server. And this is easily done with `pyhton manage.py runserver`. `manage.py` is a file at the the project's root directory. It's technically a command-line utility that allows us to perform operations on our Django web app, operations such as creating apps, making migrations, running the development server, etc. Here we're using it to run a development server. The command will generate something like
+ ```
+pyhton manage.py runserver
+
+Performing system checks...
+
+System check identified no issues (0 silenced).
+January 25, 2019 - 09:48:36
+Django version 2.1, using settings 'bloggable.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+```
+Then just go to http://127.0.0.1:8000/ to access __bloggable__. Or whatever your IP is.
+
+Notice the db.sqlite3 file is not empty. There are some mock data in the database. the admin username is `Admin` and password `testing221`. There is a second user with `Morty` as username and ``testing221` as password.
+
+## Features
+- List posts
+- Add a post
+- Display post detail (Number of views, etc.)
+- Update and Delete a post
+- Comment a post
+- Authentication
+- User registration
+- Tags
+- Search: _coming soon_
+- Rich Text-Editor: _coming soon_
+
+Enjoy!!!
