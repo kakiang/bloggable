@@ -3,25 +3,41 @@
 {% block title %} Blog - About {% endblock title %}
 
 {% block content %}
-    <div class="col-md-8">
-        <form method="POST">
-            {% csrf_token %}
-            <legend class="border-bottom mb-4">
-                Log In
-            </legend>
+<div class="shadow p-3 mb-5 bg-white col-md-8">
+    <form method="POST">
+        {% csrf_token %}
+        <legend class="border-bottom mb-4">
+            Log In
+        </legend>
+        <div class="form-group mb-4">
             {{ form|crispy }}
-                    
-            <div class="form-group">
-                <button class="btn btn-primary" type="submit">
-                    Log In
-                </button>
-            </div>
-        </form>
-        <div class="border-top pt-3 mb-4">
-            <small class="text-muted">
-                Not registered yet?
-                <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
-            </small>
+
         </div>
+
+        <div class="form-group mt-4 d-flex bd-highlight">
+
+            <div class="mr-auto p-2 bd-highlight">
+                <a href="{% url 'password_reset' %}">
+                    Forgot your password?</a>
+            </div>
+
+            <button class="btn btn-primary p-2 bd-highlight" type="submit">
+                Log In
+            </button>
+
+
+        </div>
+    </form>
+    <div class="border-top pt-3 mb-4">
+        <small class="text-muted">
+            Not registered yet?
+            <a class="mr-2" href="{% url 'register' %}">Sign Up Now</a>
+        </small>
+        <!-- <small class="text-muted">
+                Forgotten your password?
+                <a href="{% url 'password_reset' %}">Request a new Password</a>
+            </small> -->
+
     </div>
+</div>
 {% endblock content %}

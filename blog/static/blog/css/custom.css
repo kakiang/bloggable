@@ -174,3 +174,7 @@ div#start-post-submit.list-group-item {
 #form-comment.asteriskField {
     display: none;
 }
+
+.asteriskField {
+    color: red;
+}
