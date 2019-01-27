@@ -47,7 +47,7 @@ Quit the server with CONTROL-C.
 ```
 Then just go to http://127.0.0.1:8000/ to access __Bloggable__. Or whatever your IP is.
 
-Notice the db.sqlite3 file is not empty. There are some mock data in the database. the admin username is `Admin` and password `testing221``. There is a second user with `Morty` as username and ``testing221` as password.
+Notice the db.sqlite3 file is not empty. There are some mock data in the database. the admin username is `Admin` and password `testing221`. There is a second user with `Morty` as username and `testing221` as password.
 
 ## Features
 - List posts
