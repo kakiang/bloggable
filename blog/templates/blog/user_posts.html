@@ -1,5 +1,5 @@
 {% extends "blog/base.html" %}
-
+{% load static %}
 {% block title %} Blog - Home {% endblock title %}
 
 {% block content %}
@@ -37,7 +37,7 @@
             <h6 class="text-secondary">
                 <span>{{ post.publish|date:"M d, Y, h:i a" }}</span>
             </h6>
-            <p class="blog-post-content">{{ post.content }}</p>
+            <p class="blog-post-content">{{ post.content|safe }}</p>
 
             <div class="text-secondary d-flex bd-highlight">
                 <div class="mr-auto p-2 bd-highlight">

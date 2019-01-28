@@ -13,7 +13,8 @@
             </h4>
         </div>
         <div class="media pb-1">
-            <img class="d-flex mr-3 rounded-circle" src="{{ object.author.profile.image.url }}" width="50" height="50" alt="" />
+            <img class="d-flex mr-3 rounded-circle" src="{{ object.author.profile.image.url }}"
+            width="50" height="50" alt="" />
             <div class="media-body">
                 <h5 class="blog-post-author mt-0">
                     <a class="blog-post-author" href="{% url 'user-posts' object.author.username %}">
@@ -24,7 +25,8 @@
             </div>
         </div>
         <div class="blog-post-content">
-            {{ object.content }}
+
+            {{ object.content|safe }}
             <!-- {% if post.tags %}
             <p class="tags">Tags: {{ object.tags.all|join:", " }}</p>
             {% endif %} -->
@@ -67,17 +69,16 @@
         </div>
         {% endif %}
     </div>
+    {{ form.media }}
     {% if user.is_authenticated %}
     <div class="mb-4">
-        <form id="form-comment" method="post">
+
+        <form id="form-comment" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <!-- <div class="form-group"> -->
             <div class="media mb-2">
-                {% if user.is_authenticated %}
-                <img class="d-flex mr-3 rounded-circle" src="{{ user.profile.image.url }}" width="50" height="50" alt="" />
-                {% else %}
-                <img class="d-flex mr-3 rounded-circle" src="{% static 'blog/img/default.png' %}" width="50" height="50" alt="" />
-                {% endif %}
+                <img class="d-flex mr-3 rounded-circle" src="{{ user.profile.image.url }}"
+                    width="50" height="50" alt="" />
                 <div class="media-body">
                     <legend> Add your comment</legend>
                     {{ comment_form|crispy}}
@@ -119,7 +120,7 @@
                         commented {{ comment.created_on|timesince }} ago
                     </span>
                 </div>
-                <p>{{ comment.content }}</p>
+                <p class="text-justify">{{ comment.content|safe }}</p>
                 <!-- <div class="d-flex flex-row-reverse bd-highlight">
                         <span class="badge badge-secondary">
                         {{ comment.created_on|timesince }} ago

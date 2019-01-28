@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 
 from taggit.managers import TaggableManager
+from tinymce import HTMLField
 
 # Create your models here.
 
@@ -25,7 +26,8 @@ class Post(models.Model):
     )
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250, unique_for_date='publish')
-    content = models.TextField()
+    # content = models.TextField()
+    content = HTMLField('content')
     # We specify the name of the reverse relationship, from User to Post
     author = models.ForeignKey(User, related_name='blog_posts', on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
@@ -56,7 +58,8 @@ class Post(models.Model):
 class Comment(models.Model):
     # commentator_name = models.CharField(max_length=42)
     # commentator_email = models.EmailField(max_length=75)
-    content = models.TextField(verbose_name="Content")
+    # content = models.TextField(verbose_name="Content")
+    content = HTMLField('content')
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     created_on = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User, related_name='blog_comments',
