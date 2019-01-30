@@ -1,8 +1,10 @@
 {% extends "blog/base.html" %}
 {% load static %}
 {% load crispy_forms_tags %}
+{% block head%}{{ form.media }} {% endblock %}
 {% block title %} Blog - {{ object.title }} {% endblock title %}
 {% block content %}
+
 
 <div class="mb-2">
     <div class="shadow p-3 mb-5 bg-white">
@@ -13,15 +15,18 @@
             </h4>
         </div>
         <div class="media pb-1">
-            <img class="d-flex mr-3 rounded-circle" src="{{ object.author.profile.image.url }}"
-            width="50" height="50" alt="" />
+            <img class="d-flex mr-3 rounded-circle" src="{{ object.author.profile.image.url }}" width="50" height="50" alt="" />
             <div class="media-body">
                 <h5 class="blog-post-author mt-0">
                     <a class="blog-post-author" href="{% url 'user-posts' object.author.username %}">
                         {{ object.author }}
                     </a>
                 </h5>
-                <h6 class="text-secondary">Posted {{ object.publish|date:"M d, Y, h:i a" }}</h6>
+                <h6 class="text-secondary">
+                    <span>
+                        <i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>{{ object.publish|date:"M d, Y, h:i a" }}
+                    </span>
+                </h6>
             </div>
         </div>
         <div class="blog-post-content">
@@ -36,13 +41,13 @@
             <div class="mr-auto p-2 bd-highlight">
                 {% if post.tags.all %}
                 <!-- <p class="tags">{{ post.tags.all|join:" | " }}</p> -->
-                <!-- <span>
+                <span>
                     <i class="fa fa-tags fa-fw" aria-hidden="true"></i>
-                </span> -->
+                </span>
                 {% for tag in post.tags.all %}
 
-                <span class="badge badge-primary">
-                    <i class="fa fa-tag fa-fw" aria-hidden="true"></i>{{ tag }}
+                <span class="badge badge-light pl-1">
+                    <a href="{% url 'posts-list-by-tag' tag.slug %}">{{ tag }}</a>
                 </span>
                 {% endfor %}
                 {% endif %}
@@ -50,14 +55,66 @@
             <!-- <div class="p-2 bd-highlight">&#9998; {{ post.updated|date:"M d, h:i a" }}</div> -->
 
             <div class="p-2 bd-highlight">
-                <i class="fa fa-eye fa-fw" aria-hidden="true"></i>&nbsp;
-                {{ object.view_count }} views</div>
-            <div class="p-2 bd-highlight">
                 <a href="#comment-list">
-                    <i class="fa fa-comments fa-fw" aria-hidden="true"></i>&nbsp;
-                    {{ object.comment_set.all.count }} comments
+                    <i class="fa fa-comments fa-fw" aria-hidden="true"></i>
+                    {{ object.comment_set.all.count }}
                 </a>
             </div>
+            <!-- <div class="p-2 bd-highlight">
+                <i class="fa fa-eye fa-fw" aria-hidden="true"></i>
+                {{ object.view_count }}
+            </div> -->
+
+            <div class="p-2 bd-highlight ml-2">
+                <a href="#">
+                    <i class="fa fa-thumbs-up fa-fw" aria-hidden="true">&nbsp;{{ object.view_count }}</i>
+                </a>
+            </div>
+
+            <!-- <div class="p-2 bd-highlight ml-2">
+                <a href="#" class="text-secondary">
+                    <i class="fa fa-thumbs-down fa-fw" aria-hidden="true">&nbsp;{{ object.comment_set.all.count }}</i>
+                </a>
+            </div> -->
+
+            <div class="p-2 bd-highlight ml-4">
+                <a href="#"
+                data-toggle="modal"
+                data-target="#exampleModal"
+                data-whatever="@mdo">
+                <i class="fa fa-envelope fa-fw" aria-hidden="true"></i></a>
+
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Share this post with an acquaintance</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Message:</label>
+                                        <textarea class="form-control" id="message-text"></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Send message</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
         {% if object.author == user %}
         <!-- flex-row--reverse -->
@@ -65,20 +122,18 @@
             <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">
                 <i class="fa fa-pencil fa-fw"></i> Update</a>
             <a class="btn btn-danger btn-sm mt-1 mb-1 ml-1" href="{% url 'post-delete' object.id %}">
-                 <i class="fa fa-trash-o fa-lg"></i> Delete</a>
+                <i class="fa fa-trash-o fa-lg"></i> Delete</a>
         </div>
         {% endif %}
     </div>
-    {{ form.media }}
+
     {% if user.is_authenticated %}
     <div class="mb-4">
-
         <form id="form-comment" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <!-- <div class="form-group"> -->
             <div class="media mb-2">
-                <img class="d-flex mr-3 rounded-circle" src="{{ user.profile.image.url }}"
-                    width="50" height="50" alt="" />
+                <img class="d-flex mr-3 rounded-circle" src="{{ user.profile.image.url }}" width="50" height="50" alt="" />
                 <div class="media-body">
                     <legend> Add your comment</legend>
                     {{ comment_form|crispy}}
@@ -113,9 +168,9 @@
             <div class="media-body">
                 <div>
 
-                    <h5 class="b-inline"><a class="blog-post-author" href="{% url 'user-posts' comment.author.username %}">
-                        {{ comment.author.username }}
-                    </a></h5>
+                    <h5 class="d-inline"><a class="blog-post-author" href="{% url 'user-posts' comment.author.username %}">
+                            {{ comment.author.username }}
+                        </a></h5>
                     <span class="ml-2 text-secondary">
                         commented {{ comment.created_on|timesince }} ago
                     </span>

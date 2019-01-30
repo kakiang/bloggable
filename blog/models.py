@@ -47,13 +47,21 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('post-detail', kwargs={'pk':self.pk})
+        return reverse('post-detail', kwargs={'year':self.publish.year,
+                                              'month':self.publish.strftime('%m'),
+                                              'day':self.publish.strftime('%d'),
+                                              'slug':self.slug})
+        # return reverse('post-detail',
+        #                 args=[self.publish.year,
+        #                     self.publish.strftime('%m'),
+        #                     self.publish.strftime('%d'),
+        #                     self.slug])
 
 
-    # def save(self, *args, **kwargs):
-    #     if not self.slug:
-    #         self.slug = slugify(self.title)
-    #     super(Post, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super(Post, self).save(*args, **kwargs)
 
 class Comment(models.Model):
     # commentator_name = models.CharField(max_length=42)

@@ -144,7 +144,7 @@ DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')
 
 TINYMCE_DEFAULT_CONFIG = {
     'height': 280,
-    'width': 820,
+    'width': 730,
     'cleanup_on_startup': True,
     'custom_undo_redo_levels': 20,
     'selector': 'textarea',

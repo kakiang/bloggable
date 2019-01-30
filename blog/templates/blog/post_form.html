@@ -1,9 +1,9 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
+{% block head%}{{ form.media }} {% endblock %}
 {% block title %} Blog - Post {% endblock title %}
 
 {% block content %}
-{{ form.media }}
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <legend class="border-bottom mb-4">

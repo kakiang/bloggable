@@ -1,4 +1,5 @@
 {% load static %}
+{% load blog_tags %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,13 +15,13 @@
     <link rel="stylesheet" href="{% static 'blog/highlight/styles/github.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/custom.css' %}">
     <!-- <link rel="stylesheet" href="{% static 'blog/css/bootstrap-better-nav.min.css' %}"> -->
-
+    {% block head%} {% endblock %}
     <title>{% block title%} {% endblock %}</title>
 </head>
 
 <body>
     <header id="header">
-        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #34495e;">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: #34495e;">
             <div class="container">
                 <div id="logo">
                     <a class="navbar-brand" href="{% url 'blog-home' %}">
@@ -46,44 +47,23 @@
                             <i class="fa fa-pencil fa-fw" aria-hidden="true"></i> Post
                         </a>
                         {% endif %}
+
+                        <form class="form-inline navbar-form ml-4" role="search">
+                            <div class="form-group">
+                                <input class="form-control mr-sm-4" type="search"
+                                placeholder="Search" aria-label="Search"/>
+                                <!-- <span class="input-group-btn">
+                                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                                </span> -->
+                            </div>
+                        </form>
                     </div>
-                    <!-- <form class="navbar-form" role="search">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Keyword" />
-                            <span class="input-group-btn">
-                                <button type="submit" class="btn btn-secondary">
-                                    Search
-                                </button>
-                            </span>
-                        </div>
-                    </form> -->
+
 
                     <div id="user-avatar-menu" class="navbar-nav ml-auto">
-                        <!-- <form class="navbar-search pull-left mr-sm-2">
-                       <input type="text" class="search-query" placeholder="Search">
-                    </form> -->
+
                         {% if user.is_authenticated %}
-                        <!-- <div class="dropdown">
-                                    <button class="btn dropdown-toggle" type="button"
-                                        id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="true">
-                                        <img class="rounded-circle" src="{{ user.profile.image.url }}" id="user-avatar"/>
-                                        <span class="pl-2">{{ user.username|upper }}</span>
-                                        <b class="caret"></b>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
-                                        <li class="nav-item">
-                                            <a class="nav-link" role="menuitem" tabindex="-1" href="{% url 'profile' %}">
-                                                Profile</a>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" role="menuitem" tabindex="-1" href="{% url 'logout' %}">
-                                                <span class="glyphicon glyphicon-off"></span>Logout
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div> -->
+
                         <div class="dropdown show">
                             <a id="user-username" class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img class="rounded-circle" src="{{ user.profile.image.url }}" id="user-avatar" />
@@ -115,20 +95,6 @@
                             </div>
                         </div>
 
-                        <!-- <ul class="nav nav-pills navbar-right">
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                            role="button" aria-haspopup="true" aria-expanded="false">Username
-                                            <span class="caret"></span>
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                            <li class="nav-item"><a class="nav-link" href="#">View Profile</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="#">Settings</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="#">Help</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="#">Logout</a></li>
-                                        </ul>
-                                    </li>
-                                </ul> -->
                         {% else %}
                         <a class="nav-item nav-link" href="{% url 'register' %}">
                             <i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> Register</a>
@@ -152,10 +118,10 @@
         </nav>
     </header>
     <!-- Begin page content -->
-    <main role="main" class="flex-shrink-0">
+    <main role="main" class="flex-shrink-0 mt-5">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-md-9 my-4">
+                <div class="col-12 col-md-8 my-4 p-3 mb-5 bg-white">
                     <!-- <span class="mt-5"></span> -->
                     <!-- <h1 class="mt-5"></h1> -->
                     {% if messages %}
@@ -168,19 +134,32 @@
                     {% block content %}{% endblock %}
                 </div>
                 <!-- Sidebar Widgets Column -->
-                <div class="col-6 col-md-3">
-                    <!-- Search Widget -->
-                    <!-- <div class="card my-4">
-                        <h5 class="card-header">Search</h5>
-                        <div class="card-body">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search for...">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-primary ml-1" type="button">Submit</button>
-                                </span>
+                <div class="col-12 col-md-4 p-3">
+                    <div class="my-4">
+                        <div class="accordion" id="accordionExample">
+                            <div class="card">
+                                <div class="card-header p-2" id="headingOne">
+                                    <h5 class="mb-0">
+                                        <a href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            Latest posts
+                                        </a>
+                                    </h5>
+                                </div>
+
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                    <div class="card-body shadow-none mb-2 bg-light rounded py-2 px-0">
+                                        {% display_latest_posts 5 %}
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div> -->
+                        <div class="mt-4">
+                            <a href="{% url 'posts-feed' %}">
+                                <i class="fa fa-rss-square" aria-hidden="true"></i>
+                                Subscribe to RSS Feed</a>
+
+                        </div>
+                    </div>
                     <!-- Categories Widget -->
                     <!-- <div class="card my-4">
                         <h5 class="card-header">Tags</h5>

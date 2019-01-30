@@ -9,18 +9,39 @@ body {
     background-color: #f3f6f8;
     border-color: #f3f6f8;
 }
+.card {
+    /* position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box; */
+    /* border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem; */
+    border: 0px;
+    border-radius: 0rem;
+}
+.card-header:first-child {
+    /* border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0; */
+    border-radius: 0rem;
+}
 
 .card-header {
-    padding: .75rem 1.25rem;
+    /* padding: .75rem 1.25rem; */
     margin-bottom: 0;
     color: white;
-    background-color: #34495e;;
-    border-bottom: 1px solid #34495e;
+    background-color: #34495e;
+    border-bottom: 0px solid #34495e;
 }
 
-.b-inline{
-    display: inline;
+.card-header a {
+    color: white;
+    text-decoration: none;
 }
+
 #all-right #app-name, #all-right #app-suffixe{
     font-size: 18px;
 }
@@ -85,11 +106,12 @@ a.blog-post-title, .blog-post-title, .profile-name{
 }
 
 a.blog-post-author, .blog-post-author {
-    color: #6c757d;
+    /* color: #212529; */
+    color: #34495e;
     font-weight: bolder;
 }
 
-.blog-post-content , .blog-post-title{
+.blog-post-content, .blog-post-title{
     line-height: 1.68;
     letter-spacing: -.001em;
     font-family: 'q_serif',Georgia,Times,"Times New Roman",
@@ -109,18 +131,18 @@ a.blog-post-author, .blog-post-author {
     color: #007bff;
 }
 
-#navbar-menu {
-    text-transform: uppercase;
+.navbar-light .navbar-nav .nav-item a:hover{
+    background-color: #34495e;
+    color: #007bff;
 }
+
+/* #navbar-menu {
+    text-transform: uppercase;
+} */
 
 .navbar-light .navbar-nav .nav-item a {
     background-color: white;
     color:#34495e;
-}
-
-.navbar-light .navbar-nav .nav-item a:hover, a:focus{
-    background-color: #34495e;
-    color: #007bff;
 }
 
 #user-avatar{
@@ -147,9 +169,9 @@ a.blog-post-author, .blog-post-author {
     border-color: #34495e;
 }
 
-element.style {
+/* element.style {
     padding: 0%;
-}
+} */
 
 div#start-post-text.list-group-item {
     /* position: relative;

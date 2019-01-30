@@ -13,9 +13,9 @@ from django.views.generic import (
     UpdateView,
     DeleteView,
     FormView,
-
 )
 
+from taggit.models import Tag
 
 def home(request):
     context = {
@@ -56,6 +56,24 @@ class PostListView(ListView):
     paginate_by = 5
 
 
+class PostListViewByTag(ListView):
+    model = Post
+    template_name = 'blog/home.html'
+    context_object_name = 'posts'
+    # ordering = ['-created']
+    paginate_by = 5
+
+    def get_queryset(self):
+        qs = super(PostListViewByTag,self).get_queryset()
+        self.tag = get_object_or_404(Tag,slug=self.kwargs.get('tag_slug'))
+        return qs.filter(tags__in=[self.tag])
+
+    def get_context_data(self,**kwargs):
+        context=super(PostListViewByTag,self).get_context_data(**kwargs)
+        context['tag']=self.tag
+        return context
+
+
 class UserPostListView(ListView):
     model = Post
     template_name = 'blog/user_posts.html'
@@ -83,6 +101,7 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 class PostDisplayView(DetailView):
     model = Post
+    query_pk_and_slug=True
 
     def get_object(self):
         object = super(PostDisplayView, self).get_object()
@@ -98,18 +117,20 @@ class PostDisplayView(DetailView):
 
 
 class CommentCreateView(LoginRequiredMixin, CreateView):
-    form_class = CommentForm
+    model = Comment
+    fields = ['content',]
+    # form_class = CommentForm
     template_name = 'blog/post_detail.html'
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-        post = Post.objects.get(pk=self.kwargs['pk'])
+        post = Post.objects.get(slug=self.kwargs['slug'])
         form.instance.post = post
         form.save()
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('post-detail', kwargs={'pk':self.kwargs['pk']})
+        return reverse('post-detail', kwargs={'slug':self.kwargs['slug']})
 
 
 class PostDetailView(View):
