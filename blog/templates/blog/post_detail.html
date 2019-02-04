@@ -205,7 +205,7 @@
 {% endblock content%}
 
 <script>
-    {% block jquery %}
+    {% block javascript %}
 
     function updateText(newCount) {
         $('.count-clap').text(newCount)
@@ -242,5 +242,6 @@
                 console.log('error')
             }
         })
-    }) {% endblock %}
+    })
+    {% endblock %}
 </script>

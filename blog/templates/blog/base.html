@@ -257,6 +257,7 @@
     <script src="{% static 'blog/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'blog/highlight/highlight.pack.js' %}"></script>
     <script src="{% static 'blog/js/bootstrap-better-nav.min.js' %}"></script>
+    <!-- <script src="{% static 'blog/js/clap.js' %}"></script> -->
     <!-- <script src="{% static 'blog/js/js.cookie.js' %}"> -->
     <script>
         hljs.initHighlightingOnLoad();
@@ -274,7 +275,6 @@
                     }
                 }
             }
-            console.log(cookieValue);
             return cookieValue;
         }
         var csrftoken = getCookie('csrftoken');
@@ -292,9 +292,10 @@
         });
 
     </script>
+
     <script>
         $(document).ready(function(){
-        {% block jquery %}{% endblock %}
+        {% block javascript %}{% endblock %}
         })
     </script>
 </body>
