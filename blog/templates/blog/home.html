@@ -27,18 +27,7 @@
 <h3 class="mb-1 d-inline">Posts tagged with "{{ tag.name }}"</h3>
 {% endif %}
 {% for post in posts %}
-<!-- <div class="card mb-4">
-        <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
-        <div class="card-body">
-          <h2 class="card-title">Post Title</h2>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-          <a href="#" class="btn btn-primary">Read More &rarr;</a>
-        </div>
-        <div class="card-footer text-muted">
-          Posted on January 1, 2017 by
-          <a href="#">Start Bootstrap</a>
-        </div>
-      </div> -->
+
 <!-- style="text-decoration: none;color:#34495e"  -->
 <div class="shadow p-3 mb-5 bg-white">
 
@@ -83,8 +72,9 @@
             </h6>
         </div>
     </div>
-    <div class="blog-post-content">
-        {{ post.content|safe|truncatewords:50 }} <a href="{{ post.get_absolute_url }}" role="button">Read more</a>
+    <div class="blog-post-content pb-3">
+        {{ post.content|safe|truncatewords_html:50 }}
+        <span><a class="btn btn-sm btn-primary" href="{{ post.get_absolute_url }}" role="button">Read more</a></span>
         <!-- <p>
             <a class="btn btn-primary btn-sm" href="{{ post.get_absolute_url }}" role="button">Read more</a>
         </p> -->

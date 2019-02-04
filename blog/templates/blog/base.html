@@ -34,7 +34,7 @@
                 <!-- only small devices -->
                 <form method="get" action="{% url 'post-search' %}" class="form-inline navbar-form mt-2 d-lg-none" role="search">
                     <div class="form-group">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search..." aria-label="Search" name="term" value="{{ term }}" />
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search..." aria-label="Search" name="term" value="{{ term }}" required/>
                         <!-- {{ search_form }} -->
                         <span class="input-group-btn d-none d-sm-block">
                             <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Go</button>
@@ -62,9 +62,9 @@
                         </a>
                         {% endif %}
 
-                        <form method="get" action="{% url 'post-search' %}" class="form-inline navbar-form ml-4 my-lg-0 d-none d-lg-block" role="search">
+                        <form method="get" action="{% url 'post-search' %}" class="form-inline navbar-form ml-4 my-lg-0 d-none d-lg-block" role="search" novalidate>
                             <div class="form-group">
-                                <input class="form-control mr-sm-2" type="search" placeholder="Search..." aria-label="Search" name="term" value="{{ term }}" />
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search..." aria-label="Search" name="term" value="{{ term }}" required/>
                                 <!-- {{ search_form }} -->
                                 <span class="input-group-btn">
                                     <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Go</button>

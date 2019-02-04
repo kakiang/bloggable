@@ -47,7 +47,10 @@
             </h6>
 
             <p class="blog-post-content">
-            {{ post.content|safe|truncatewords:50 }} <a href="{{ post.get_absolute_url }}" role="button">Read more</a>
+                {{ post.content|safe|truncatewords_html:50 }}
+            <div>
+                <a class="btn btn-sm btn-primary" href="{{ post.get_absolute_url }}" role="button">Read more</a>
+            </div>
         </p>
 
             <div class="text-secondary d-flex bd-highlight">

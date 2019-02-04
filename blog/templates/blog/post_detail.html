@@ -66,19 +66,15 @@
 
             <div class="p-2 bd-highlight badge badge-pill badge-white">
 
-                {% with total_claps=object.users_clap.count users_clap=object.users_clap.all %}
-
-                <a href="#" class="clap-btn text-decoration-none" data-href="{{ object.get_clap_api_url }}" data-claps="{{ total_claps }}">
-                    {% if user in users_clap %}
+                <a href="#" class="clap-btn text-decoration-none" data-href="{{ object.get_clap_api_url }}" data-claps="{{ object.users_clap.count }}">
+                    {% if user in object.users_clap.all %}
                     <img class="ml-1" src="{% static 'blog/img/clapping_filled.svg' %}" width="25" height="25">
                     {% else %}
                     <img class="ml-1" src="{% static 'blog/img/clapping.svg' %}" width="25" height="25">
                     {% endif %}
                 </a>
-                <span class="count-clap mr-1" style="color: #007bff;">{{ total_claps }}</span>
+                <span class="count-clap mr-1" style="color: #007bff;">{{ object.users_clap.count }}</span>
             </div>
-
-            {% endwith %}
 
             <div class="p-2 bd-highlight">
                 <!-- <a href="#"
@@ -209,9 +205,7 @@
 {% endblock content%}
 
 <script>
-    {
-        % block jquery %
-    }
+    {% block jquery %}
 
     function updateText(newCount) {
         $('.count-clap').text(newCount)
@@ -235,14 +229,12 @@
                     claps = previous_count > 0 ? previous_count - 1 : 0
                     console.log("data.liked claps=" + claps)
                     updateText(claps)
-                    this_.html('<img class="ml-1" src="{% static '
-                        blog / img / clapping.svg ' %}" width="25" height="25">')
+                    this_.html('<img class="ml-1" src="{% static 'blog/img/clapping.svg' %}" width="25" height="25">')
                 } else {
                     claps = previous_count + 1
                     console.log("data.unliked claps=" + claps)
                     updateText(claps)
-                    this_.html('<img class="ml-1" src="{% static '
-                        blog / img / clapping_filled.svg ' %}" width="25" height="25">')
+                    this_.html('<img class="ml-1" src="{% static 'blog/img/clapping_filled.svg' %}" width="25" height="25">')
                 }
             },
             error: function(error) {
@@ -250,7 +242,5 @@
                 console.log('error')
             }
         })
-    }) {
-        % endblock %
-    }
+    }) {% endblock %}
 </script>
