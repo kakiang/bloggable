@@ -3,16 +3,19 @@
 {% load crispy_forms_tags %}
 {% block head%}{{ form.media }} {% endblock %}
 {% block title %} Blog - {{ object.title }} {% endblock title %}
+
 {% block content %}
 
 
 <div class="mb-2">
     <div class="shadow p-3 mb-5 bg-white">
-
-        <div class="pb-1">
-            <h4 class="blog-post-title media-heading">
+        <div class="d-flex">
+            <h4 class="blog-post-title media-heading d-inline">
                 <strong>{{ object.title|title }}</strong>
             </h4>
+            <!-- <a href="#" class="ml-auto mb-0 d-inline ">
+                <img src="{% static 'blog/img/pdf.svg' %}" width="30" height="30">
+            </a> -->
         </div>
         <div class="media pb-1">
             <img class="d-flex mr-3 rounded-circle" src="{{ object.author.profile.image.url }}" width="50" height="50" alt="" />
@@ -30,71 +33,75 @@
             </div>
         </div>
         <div class="blog-post-content">
-
             {{ object.content|safe }}
             <!-- {% if post.tags %}
             <p class="tags">Tags: {{ object.tags.all|join:", " }}</p>
             {% endif %} -->
         </div>
         <!-- flex-row-reverse -->
-        <div class="text-secondary d-flex  bd-highlight mb-2">
+        <div class="text-secondary d-flex  bd-highlight mb-1">
             <div class="mr-auto p-2 bd-highlight">
                 {% if post.tags.all %}
                 <!-- <p class="tags">{{ post.tags.all|join:" | " }}</p> -->
                 <span>
-                    <i class="fa fa-tags fa-fw" aria-hidden="true"></i>
+                    <i class="fa fa-tags fa-fw " aria-hidden="true"></i>
                 </span>
                 {% for tag in post.tags.all %}
 
                 <span class="badge badge-light pl-1">
-                    <a href="{% url 'posts-list-by-tag' tag.slug %}">{{ tag }}</a>
+                    <a style="font-size:1.2em;" href="{% url 'posts-list-by-tag' tag.slug %}">{{ tag|title }}</a>
                 </span>
                 {% endfor %}
                 {% endif %}
             </div>
             <!-- <div class="p-2 bd-highlight">&#9998; {{ post.updated|date:"M d, h:i a" }}</div> -->
 
+            <div class="p-2 bd-highlight badge mx-2 badge-pill badge-white">
+                <a href="#comment-list" id="#comment-list" class="text-decoration-none">
+                    <!-- <i class="fa fa-comments fa-fw" aria-hidden="true"></i> -->
+                    <img class="ml-1" src="{% static 'blog/img/speech-bubbles-comment_b.svg' %}" width="25" height="25">
+                    <span class="mr-1">{{ object.comment_set.all.count }}</span>
+                </a>
+            </div>
+
+            <div class="p-2 bd-highlight badge badge-pill badge-white">
+
+                {% with total_claps=object.users_clap.count users_clap=object.users_clap.all %}
+
+                <a href="#" class="clap-btn text-decoration-none" data-href="{{ object.get_clap_api_url }}" data-claps="{{ total_claps }}">
+                    {% if user in users_clap %}
+                    <img class="ml-1" src="{% static 'blog/img/clapping_filled.svg' %}" width="25" height="25">
+                    {% else %}
+                    <img class="ml-1" src="{% static 'blog/img/clapping.svg' %}" width="25" height="25">
+                    {% endif %}
+                </a>
+                <span class="count-clap mr-1" style="color: #007bff;">{{ total_claps }}</span>
+            </div>
+
+            {% endwith %}
+
             <div class="p-2 bd-highlight">
-                <a href="#comment-list">
-                    <i class="fa fa-comments fa-fw" aria-hidden="true"></i>
-                    {{ object.comment_set.all.count }}
-                </a>
-            </div>
-            <!-- <div class="p-2 bd-highlight">
-                <i class="fa fa-eye fa-fw" aria-hidden="true"></i>
-                {{ object.view_count }}
-            </div> -->
-
-            <div class="p-2 bd-highlight ml-2">
-                <a href="#">
-                    <i class="fa fa-thumbs-up fa-fw" aria-hidden="true">&nbsp;{{ object.view_count }}</i>
-                </a>
-            </div>
-
-            <!-- <div class="p-2 bd-highlight ml-2">
-                <a href="#" class="text-secondary">
-                    <i class="fa fa-thumbs-down fa-fw" aria-hidden="true">&nbsp;{{ object.comment_set.all.count }}</i>
-                </a>
-            </div> -->
-
-            <div class="p-2 bd-highlight ml-4">
-                <a href="#"
+                <!-- <a href="#"
                 data-toggle="modal"
                 data-target="#exampleModal"
                 data-whatever="@mdo">
-                <i class="fa fa-envelope fa-fw" aria-hidden="true"></i></a>
+                <i class="fa fa-envelope fa-fw" aria-hidden="true"></i></a> -->
 
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Share this post with an acquaintance</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Share "{{ object.title }}" by e-mail</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
                                 <form>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Sender:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                    </div>
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">Recipient:</label>
                                         <input type="text" class="form-control" id="recipient-name">
@@ -107,7 +114,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Send message</button>
+                                <button type="button" class="btn btn-primary">Send</button>
                             </div>
                         </div>
                     </div>
@@ -157,21 +164,27 @@
 
     <div id="comment-list" class="mt-5 pl-2 shadow-none p-3 mb-5 bg-light rounded">
         {% if comments %}
-        <p class="btn-primary mb-5 badge badge-primary text-uppercase" style="width: 6rem;">
+        <p class="mb-4 badge badge-light text-uppercase" style="width: 6rem;">
             <b>{{ object.comment_set.all.count }} comments</b>
             <!-- <b><span class="tag tag-success tag-pill">{{ post.comment_set.all.count }}</span> comments</b> -->
         </p>
 
         {% for comment in comments %}
         <div class="media mb-4">
-            <img class="d-flex mr-3 rounded-circle" src="{{ comment.author.profile.image.url }}" width="50" height="50" alt="" />
+            <img class="d-flex mr-3 rounded-circle bg-white" src="{{ comment.author.profile.image.url }}" width="50" height="50" alt="" />
             <div class="media-body">
                 <div>
-
-                    <h5 class="d-inline"><a class="blog-post-author" href="{% url 'user-posts' comment.author.username %}">
+                    <h5 class="d-inline">
+                        <a class="blog-post-author" href="{% url 'user-posts' comment.author.username %}">
                             {{ comment.author.username }}
-                        </a></h5>
-                    <span class="ml-2 text-secondary">
+                        </a>
+                    </h5>
+                    {% if comment.post.author == comment.author %}
+                    <span class="badge badge-primary">
+                        Author
+                    </span>
+                    {% endif %}
+                    <span class="ml-1 text-secondary">
                         commented {{ comment.created_on|timesince }} ago
                     </span>
                 </div>
@@ -194,3 +207,50 @@
     <!-- Comment -->
 </div>
 {% endblock content%}
+
+<script>
+    {
+        % block jquery %
+    }
+
+    function updateText(newCount) {
+        $('.count-clap').text(newCount)
+    }
+    $('.clap-btn').click(function(e) {
+        e.preventDefault()
+        var this_ = $(this)
+        var clapUrl = this_.attr('data-href')
+        var previous_count = parseInt(this_.attr('data-claps')) | 0
+        var previous_count = parseInt($('.count-clap').text());
+        // var previous_count = parseInt(this_.attr('data-claps')) | 0
+        console.log("previous_count " + previous_count)
+        $.ajax({
+            url: clapUrl,
+            method: 'GET',
+            data: {},
+            success: function(data) {
+                console.log(data)
+                var claps;
+                if (data.liked) {
+                    claps = previous_count > 0 ? previous_count - 1 : 0
+                    console.log("data.liked claps=" + claps)
+                    updateText(claps)
+                    this_.html('<img class="ml-1" src="{% static '
+                        blog / img / clapping.svg ' %}" width="25" height="25">')
+                } else {
+                    claps = previous_count + 1
+                    console.log("data.unliked claps=" + claps)
+                    updateText(claps)
+                    this_.html('<img class="ml-1" src="{% static '
+                        blog / img / clapping_filled.svg ' %}" width="25" height="25">')
+                }
+            },
+            error: function(error) {
+                console.log(error)
+                console.log('error')
+            }
+        })
+    }) {
+        % endblock %
+    }
+</script>

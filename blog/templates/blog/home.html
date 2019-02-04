@@ -2,6 +2,7 @@
 {% load static %}
 {% block title %} Blog - Home {% endblock title %}
 
+
 {% block content %}
 
 <!-- <div class="card mb-4">
@@ -17,8 +18,13 @@
         </div>
     </form>
 </div> -->
+{% if search %}
+<img class="ml-1 d-inline" src="{% static 'blog/img/search.svg' %}" width="50" height="50">
+<h3 class="mb-1 d-inline">Search results for "{{ search }}"</h3>
+{% endif %}
 {% if tag %}
-    <h3 class="border-bottom mb-1">Posts tagged with "{{ tag.name }}"</h3>
+<img class="ml-1 d-inline" src="{% static 'blog/img/tags-black-couple-with-rings.svg' %}" width="50" height="50">
+<h3 class="mb-1 d-inline">Posts tagged with "{{ tag.name }}"</h3>
 {% endif %}
 {% for post in posts %}
 <!-- <div class="card mb-4">
@@ -60,15 +66,17 @@
                 <span class="text-secondary">{{ post.author.profile.position }}</span>
                 <!-- <span> {{ post.publish|timesince }} ago</span> -->
             </h6>
-            <h6 class="text-secondary">
+            <h6 class="text-dark">
                 <span>
                     <i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>&nbsp;{{ post.publish|date:"M d, h:i a" }}
                 </span>
                 <span class="mx-2">
-                    <i class="fa fa-eye fa-fw" aria-hidden="true"></i>
-                    {{ post.view_count }}
+                    <img src="{% static 'blog/img/clap-hands-dark.svg' %}" alt="clap" width="20" height="20">
+                    <!-- <i class="fa fa-eye fa-fw" aria-hidden="true"></i> -->
+                    {{ post.users_clap.count }}
                 </span>
-                <a href="{{ post.get_absolute_url }}#comment-list">
+                <a href="{{ post.get_absolute_url }}#comment-list" class="text-dark">
+                    <!-- <img class="ml-1" src="{% static 'blog/img/speech-bubbles-comment.svg' %}" width="22" height="22"> -->
                     <i class="fa fa-comments fa-fw" aria-hidden="true"></i>
                     {{ post.comment_set.all.count }}</a>
 
@@ -76,8 +84,10 @@
         </div>
     </div>
     <div class="blog-post-content">
-        {{ post.content|safe }}
-
+        {{ post.content|safe|truncatewords:50 }} <a href="{{ post.get_absolute_url }}" role="button">Read more</a>
+        <!-- <p>
+            <a class="btn btn-primary btn-sm" href="{{ post.get_absolute_url }}" role="button">Read more</a>
+        </p> -->
     </div>
 
     <div class="d-flex bd-highlight">

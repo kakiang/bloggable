@@ -2,3 +2,4 @@ Django==2.1.5
 Pillow==5.4.1
 django_taggit==0.23.0
 django-crispy-forms==1.7.0
+django_tinymce4_lite==1.7.4

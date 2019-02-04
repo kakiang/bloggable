@@ -45,7 +45,10 @@
                     <i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>{{ post.publish|date:"M d, Y, h:i a" }}
                 </span>
             </h6>
-            <p class="blog-post-content">{{ post.content|safe }}</p>
+
+            <p class="blog-post-content">
+            {{ post.content|safe|truncatewords:50 }} <a href="{{ post.get_absolute_url }}" role="button">Read more</a>
+        </p>
 
             <div class="text-secondary d-flex bd-highlight">
                 <div class="mr-auto p-2 bd-highlight">
@@ -63,11 +66,14 @@
                     {% endif %}
                 </div>
                 <!-- <div class="p-2 bd-highlight">&#9998; Last update: {{ post.updated|timesince }}</div> -->
+                <div class="p-2 bd-highlight text-primary">
+
+                    <img src="{% static 'blog/img/clapping_filled.svg' %}" alt="clap" width="20" height="20">
+                    <!-- <i class="fa fa-eye fa-fw" aria-hidden="true"></i> -->
+                    {{ post.users_clap.count }} claps
+                </div>
                 <div class="p-2 bd-highlight">
-                    <i class="fa fa-eye fa-fw" aria-hidden="true"></i>&nbsp;
-                    {{ post.view_count }} views</div>
-                <div class="p-2 bd-highlight">
-                        <a href="{% url 'post-detail' post.id%}#comment-list">
+                        <a href="{{ post.get_absolute_url }}#comment-list">
                             <i class="fa fa-comments fa-fw" aria-hidden="true"></i>
                             {{ post.comment_set.all.count }} comments</a>
                     </div>

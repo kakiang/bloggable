@@ -1,5 +1,5 @@
 from django.contrib.syndication.views import Feed
-from django.template.defaultfilters import truncatewords
+from django.template.defaultfilters import truncatewords_html
 from django.utils.safestring import mark_safe
 from django.utils.html import strip_tags
 
@@ -17,4 +17,4 @@ class LatestPostsFeed(Feed):
         return item.title
 
     def item_description(self, item):
-        return truncatewords(strip_tags(item.content),60)
+        return truncatewords_html(item.content,60)

@@ -1,0 +1,47 @@
+<html>
+
+<body>
+    <div class="container shadow p-3 mb-5 bg-light">
+
+        <h1>{{ object.title }}</h1>
+        <div>
+            <p><b>{{ object.author }}</b> |
+                <span class="text-secondary">
+                    {{ object.publish|date:"M d, Y, h:i a" }}, {{ object.users_clap.count }} Likes
+                </span>
+            </p>
+        </div>
+        <div>
+            <p>
+                {{ object.content }}
+            </p>
+            <p>
+                <span>
+                    <i class="fa fa-tags fa-fw " aria-hidden="true"></i>Tags:
+                </span>
+                {% for tag in object.tags.all %}
+                <span class="badge badge-light pl-1">{{ tag }} {% if not forloop.last %},{% endif %} </span>
+                {% endfor %}
+            </p>
+        </div>
+        <!-- <div>
+            <h3>{{ object.comment_set.all.count }} Comments</h3>
+
+            {% with comments=object.comment_set.all %}
+            {% for comment in comments %}
+            <div class="mt-2">
+
+                <p>
+                    <b>{{ comment.author.username }}</b>,
+                    <span class="text-secondary">{{ comment.created_on|date:"M d, Y, h:i a" }}</span>
+                </p>
+                <p class="text-justify">{{ comment.content }}</p>
+            </div>
+            {% endfor %}
+            {% endwith %}
+
+        </div> -->
+    </div>
+</body>
+
+</html>

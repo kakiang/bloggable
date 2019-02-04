@@ -4,7 +4,7 @@
 {% block title %} Blog - Post {% endblock title %}
 
 {% block content %}
-<form method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data" novalidate>
     {% csrf_token %}
     <legend class="border-bottom mb-4">
         Blog Post

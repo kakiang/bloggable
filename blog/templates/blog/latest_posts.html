@@ -1,5 +1,5 @@
 <ul>
-    {% for post in latest_posts %}
+    {% for post in posts %}
     <li>
         <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
         <span class="text-muted">{{ post.publish|date:"m/d" }}</span>

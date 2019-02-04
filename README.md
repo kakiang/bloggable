@@ -52,14 +52,17 @@ Notice the db.sqlite3 file is not empty. There are some mock data in the databas
 ## Features
 - List posts
 - Add posts
-- Display post detail (Number of views, etc.)
+- Display post detail
 - Update and Delete posts
 - Add Comments
 - Authentication
 - User registration
 - Tags
-- Search: _coming soon_
-- Rich Text-Editor: _coming soon_
+- pagination
+- Search
+- Rich Text-Editor
+- RSS Feed
+- Clap (like) posts
 
 
 Enjoy Django!!!
