@@ -1,8 +1,9 @@
+{% load humanize %}
 <ul>
     {% for post in posts %}
     <li>
         <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
-        <span class="text-muted">{{ post.publish|date:"m/d" }}</span>
+        <span class="text-muted mb-2 d-block">{{ post.publish|naturaltime }}</span>
     </li>
     {% endfor %}
 </ul>

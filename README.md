@@ -1,7 +1,12 @@
-# Bloggable
+# Bloggable  
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 A full-featured blog with Django framework. I consider this project to be an advanced hello world in Django. So if you are completely new to Django, you might want to hang out on the [Django website](https://docs.djangoproject.com) a little while before coming back here.
 
-![bloggable Home image](media/bloggable_home.png "Bloggable Home page")
+<img align="center" width="400" alt="Bloggable Post Detail page" src="screenshots/bloggable_home.png"/>
+
+<!-- ![bloggable Home image](screenshots/bloggable_home.png "Bloggable Home page") -->
 
 ## Installation
 Assuming you have Python 3 et Django installed, __Bloggable__ is easy to install and deploy. If not proceed to [Python Setup and Usage](https://docs.python.org/3/using/index.html) page to install Python 3 and [How to install Django](https://docs.djangoproject.com/en/2.1/topics/install/) page to install Django. However if you are running a Linux system on your computer, you probably already have Python intsalled. Just run `python --version` in your terminal to check it. If you do have Python installed then just run `pip install Django` in your terminal to install Django and you are good to go.  
@@ -66,5 +71,3 @@ Notice the db.sqlite3 file is not empty. There are some mock data in the databas
 
 
 Enjoy Django!!!
-
-![Bloggable Post Detail page image](media/bloggable_comment.png "Bloggable Post Detail page")

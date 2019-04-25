@@ -73,12 +73,16 @@
 
                     <img src="{% static 'blog/img/clapping_filled.svg' %}" alt="clap" width="20" height="20">
                     <!-- <i class="fa fa-eye fa-fw" aria-hidden="true"></i> -->
-                    {{ post.users_clap.count }} claps
+                    {% with count=post.users_clap.count %}
+                    {{ count }} clap{{ count|pluralize }}
+                    {% endwith %}
                 </div>
                 <div class="p-2 bd-highlight">
                         <a href="{{ post.get_absolute_url }}#comment-list">
                             <i class="fa fa-comments fa-fw" aria-hidden="true"></i>
-                            {{ post.comment_set.all.count }} comments</a>
+                            {% with ccount=post.comment_set.all.count %}
+                            {{ ccount }} comment{{ ccount|pluralize }}</a>
+                            {% endwith %}
                     </div>
             </div>
         </div>

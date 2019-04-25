@@ -109,10 +109,11 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def test_func(self):
         post = self.get_object()
-        return self.request.user == post.author
+        return self.request.user == post.author or self.request.user.is_superuser
 
 class PostDisplayView(DetailView):
     model = Post
+    context_object_name = 'post'
     query_pk_and_slug=True
 
     def get_object(self):
