@@ -4,7 +4,7 @@
 
 A full-featured blog with Django framework. I consider this project to be an advanced hello world in Django. So if you are completely new to Django, you might want to hang out on the [Django website](https://docs.djangoproject.com) a little while before coming back here.
 
-<img align="center" width="400" alt="Bloggable Post Detail page" src="screenshots/bloggable_home.png"/>
+<img alt="Bloggable Post Detail page" src="screenshots/bloggable_home.png"/>
 
 <!-- ![bloggable Home image](screenshots/bloggable_home.png "Bloggable Home page") -->
 
