@@ -11,17 +11,6 @@ body {
 }
 
 .card {
-    /* position: relative;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box; */
-    /* border: 1px solid rgba(0,0,0,.125);
-    border-radius: .25rem; */
     border: 0px;
     border-radius: 0rem;
 }
@@ -107,24 +96,13 @@ a.blog-post-title:focus,
 a.blog-post-title:hover,
 a.blog-post-author:focus,
 a.blog-post-author:hover {
-    color: #34495e;
     background-color: inherit;
 }
 
-a.blog-post-title,
-.blog-post-title,
-.profile-name,
-a.blog-post-author,
-.blog-post-author {
-    /* text-decoration: none; */
-    /* text-decoration-color: #007bff; */
-    color: #34495e;
-}
 
 .blog-post-content {
     line-height: 1.87;
     letter-spacing: -.001em;
-    color: #34495e;
 }
 
 .navbar-light .navbar-toggler {

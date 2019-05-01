@@ -1,5 +1,10 @@
 Django==2.1.7
-Pillow==5.4.1
-django_taggit==0.23.0
 django-crispy-forms==1.7.0
-django_tinymce4_lite==1.7.4
+django-taggit==0.23.0
+django-tinymce4-lite==1.7.4
+djangorestframework==3.9.2
+jsmin==2.2.2
+Pillow==5.4.1
+python-dotenv==0.10.1
+pytz==2019.1
+reportlab==3.5.20

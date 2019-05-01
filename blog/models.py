@@ -50,7 +50,7 @@ class Post(models.Model):
     searchManager = SearchManager()
 
     def claps_count(self):
-        return users_clap.count()
+        return self.users_clap.count()
 
     class Meta:
         ordering = ('-publish',)

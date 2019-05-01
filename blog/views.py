@@ -24,14 +24,17 @@ from django.views.generic.base import TemplateView
 from django.db.models import Q
 from taggit.models import Tag
 
+
 def home(request):
     context = {
         "posts": Post.published.all()
     }
     return render(request, 'blog/home.html', context)
 
+
 def about(request):
     return render(request, 'blog/about.html')
+
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
@@ -214,6 +217,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import authentication, permissions
 
+
 class PostLikeAPI(APIView):
     authentication_classes = (authentication.SessionAuthentication,)
     permission_classes = (permissions.IsAuthenticated,)
@@ -237,6 +241,7 @@ class PostLikeAPI(APIView):
             'liked':liked
         }
         return Response(data)
+
 
 def post_like(request):
     post_id = request.POST.get('id')
