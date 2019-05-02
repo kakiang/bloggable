@@ -1,17 +1,13 @@
-{% extends "blog/base.html" %}
-{% load static %}
-{% block title %} Blog - Home {% endblock title %}
-
-{% block content %}
+{% extends "blog/base.html" %} {% load static %} {% block title %} Blog - Home {% endblock title %} {% block content %}
 <div class="mb-2 p-3">
     <div class="media mb-4 pb-2">
         <img class="d-flex mr-3 rounded-circle" src="{{ author.profile.image.url }}" width="50" height="50" alt="" />
         <!-- <img class="d-flex mr-3 rounded-circle" src="{{ posts.author.profile.image.url }}" width="50" height="50" alt="" /> -->
         <div class="media-body">
 
-            <h4 class="d-inline mt-0 profile-name">
-                <strong>{{ author.first_name }} {{ author.last_name }}</strong>,
-            </h4>
+            <h1 class="d-inline mt-0 profile-name">
+                {{ author.first_name }} {{ author.last_name }},
+            </h1>
             <span>{{ author.profile.position }}</span>
             <h6 class="mt-2 text-secondary">
 
@@ -24,34 +20,35 @@
 
     </div>
     <h5 class="border-bottom media mb-2 pb-1 profile-name">
-        {{ view.kwargs.username }}'s Feed ({{ page_obj.paginator.count }} posts)
+        <!-- {{ view.kwargs.username }}'s Feed ({{ page_obj.paginator.count }} posts) -->
+        {{ author.first_name }} {{ author.last_name }}'s Feed ({{ page_obj.paginator.count }} posts)
     </h5>
     {% for post in posts %}
     <div class="media shadow-sm p-3 mb-4 bg-white">
         <!-- <img class="d-flex mr-3 rounded-circle" src="{{ post.author.profile.image.url }}" width="50" height="50" alt=""> -->
         <div class="media-body">
-            <h5 class="blog-post-title media-heading">
-                <strong>
-                    <!-- <a class="blog-post-title" href="{% url 'post-detail' post.slug %}">
+            <h1 class="blog-post-title media-heading">
+                <!-- <strong> -->
+                <!-- <a class="blog-post-title" href="{% url 'post-detail' post.slug %}">
                         {{ post.title|title }}
                     </a> -->
-                    <a class="blog-post-title" href="{{ post.get_absolute_url }}">
-                        {{ post.title|title }}
+                <a class="blog-post-title" href="{{ post.get_absolute_url }}">
+                        {{ post.title|capfirst }}
                     </a>
-                </strong>
-            </h5>
+                <!-- </strong> -->
+            </h1>
             <h6 class="text-secondary">
-                <span>
-                    <i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>{{ post.publish|date:"M d, Y, h:i a" }}
-                </span>
+
+                {{ post.publish|date:"M d, Y, h:i a" }}
+
             </h6>
 
             <p class="blog-post-content">
                 {{ post.content|safe|truncatewords_html:50 }}
-            <div>
-                <a class="btn btn-sm btn-primary" href="{{ post.get_absolute_url }}" role="button">Read more</a>
-            </div>
-        </p>
+                <div>
+                    <a class="btn btn-sm btn-primary" href="{{ post.get_absolute_url }}" role="button">Read more</a>
+                </div>
+            </p>
 
             <div class="text-secondary d-flex bd-highlight">
                 <div class="mr-auto p-2 bd-highlight">
@@ -59,31 +56,25 @@
                     <!-- <p class="tags">{{ post.tags.all|join:" | " }}</p> -->
                     <span>
                         <i class="fa fa-tags fa-fw" aria-hidden="true"></i>
-                    </span>
-                    {% for tag in post.tags.all %}
+                    </span> {% for tag in post.tags.all %}
 
                     <span class="badge badge-light pl-1">
                         <a href="{% url 'posts-list-by-tag' tag.slug %}">{{ tag }}</a>
-                    </span>
-                    {% endfor %}
-                    {% endif %}
+                    </span> {% endfor %} {% endif %}
                 </div>
                 <!-- <div class="p-2 bd-highlight">&#9998; Last update: {{ post.updated|timesince }}</div> -->
+
+                <div class="p-2 bd-highlight">
+                    <a href="{{ post.get_absolute_url }}#comment-list" style="color: #007bff;">
+                        <i class="fa fa-comments fa-fw" aria-hidden="true"></i> {% with ccount=post.comment_set.all.count %} {{ ccount }} comment{{ ccount|pluralize }} {% endwith %}
+                    </a>
+                </div>
                 <div class="p-2 bd-highlight text-primary">
 
                     <img src="{% static 'blog/img/clapping_filled.svg' %}" alt="clap" width="20" height="20">
                     <!-- <i class="fa fa-eye fa-fw" aria-hidden="true"></i> -->
-                    {% with count=post.users_clap.count %}
-                    {{ count }} clap{{ count|pluralize }}
-                    {% endwith %}
+                    {% with count=post.users_clap.count %} {{ count }} clap{{ count|pluralize }} {% endwith %}
                 </div>
-                <div class="p-2 bd-highlight">
-                        <a href="{{ post.get_absolute_url }}#comment-list">
-                            <i class="fa fa-comments fa-fw" aria-hidden="true"></i>
-                            {% with ccount=post.comment_set.all.count %}
-                            {{ ccount }} comment{{ ccount|pluralize }}</a>
-                            {% endwith %}
-                    </div>
             </div>
         </div>
     </div>
@@ -117,6 +108,4 @@
         </span>
     </div>
 </nav>
-{% endif %}
-
-{% endblock content%}
+{% endif %} {% endblock content%}

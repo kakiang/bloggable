@@ -1,9 +1,14 @@
 {% load humanize %}
 <ul>
-    {% for post in posts %}
-    <li>
+    {% for post in posts %} {% if forloop.last %}
+    <li class="pt-1 px-1">
         <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
         <span class="text-muted mb-2 d-block">{{ post.publish|naturaltime }}</span>
     </li>
-    {% endfor %}
+    {% else %}
+    <li class="border-bottom pt-1 px-1">
+        <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+        <span class="text-muted mb-2 d-block">{{ post.publish|naturaltime }}</span>
+    </li>
+    {% endif %} {% endfor %}
 </ul>

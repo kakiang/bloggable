@@ -7,21 +7,20 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
-    <!-- Bootstrap CSS -->
-    <!-- <link rel="stylesheet" href="{% static 'blog/css/bootstrap.min.css' %}"> -->
+
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/@bootstrapstudio/bootstrap-better-nav/dist/bootstrap-better-nav.min.css">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/monokai.min.css" integrity="sha256-/d3ZZC6Gr1V8JDi9Os6A2CjemarhIv16pw1Q6snL+lM=" crossorigin="anonymous" />
 
-    <link rel="stylesheet" href="{% static 'blog/css/sticky-footer.css' %}">
-    <link rel="stylesheet" href="{% static 'blog/css/custom.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'blog/dev_static/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/dev_static/bootstrap-4.2.1/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/dev_static/fontawesome-5.7.2/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/dev_static/highlight/monokai.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/dev_static/bootstrap-better-nav.min.css' %}"> -->
 
-    <!-- <link rel="stylesheet" href="{% static 'blog/fontawesome/css/font-awesome.min.css' %}"> -->
-    <!-- <link rel="stylesheet" href="{% static 'blog/highlight/styles/monokai.css' %}"> -->
-    <!-- <link rel="stylesheet" href="{% static 'blog/css/bootstrap-better-nav.min.css' %}"> -->
-    {% block head%} {% endblock %}
+    <link rel="stylesheet" href="{% static 'blog/css/sticky-footer.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/custom.css' %}"> {% block head%} {% endblock %}
     <title>{% block title%} {% endblock %}</title>
 </head>
 
@@ -38,19 +37,9 @@
                     </a>
                 </div>
                 <!-- only small devices -->
-                <form method="get" action="{% url 'post-search' %}" class="form-inline navbar-form mt-2 d-lg-none" role="search">
-                    <div class="form-group">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search..." aria-label="Search" name="term" value="{{ term }}" required />
-                        <!-- {{ search_form }} -->
-                        <span class="input-group-btn d-none d-sm-block">
-                            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Go</button>
-                        </span>
-                    </div>
-                </form>
-                <!-- only small devices -->
                 <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <div id="navbar-menu" class="navbar-nav mr-auto">
@@ -66,10 +55,10 @@
 
                         <form method="get" action="{% url 'post-search' %}" class="form-inline navbar-form ml-4 my-lg-0 d-none d-lg-block" role="search" novalidate>
                             <div class="form-group">
-                                <input class="form-control mr-sm-2" type="search" placeholder="Search..." aria-label="Search" name="term" value="{{ term }}" required />
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search..." aria-label="Search" name="term" value="{{ term }}" required/>
                                 <!-- {{ search_form }} -->
                                 <span class="input-group-btn">
-                                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Go</button>
+                                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
                                 </span>
                             </div>
                         </form>
@@ -91,20 +80,20 @@
                                     <i class="fa fa-id-badge fa-fw"></i>&nbsp; View Profile
                                 </a>
                                 <!-- <a class="dropdown-item" href="#">
-                                    <i class="fa fa-cog fa-fw" aria-hidden="true"></i>&nbsp; Settings
-                                </a> -->
+                                <i class="fa fa-cog fa-fw" aria-hidden="true"></i>&nbsp; Settings
+                            </a> -->
                                 <!-- <h5 class="dropdown-header">ACCOUNT</h5>
-                                <a class="dropdown-item" href="#">Settings</a>
-                                <a class="dropdown-item" href="#">Language</a> -->
+                            <a class="dropdown-item" href="#">Settings</a>
+                            <a class="dropdown-item" href="#">Language</a> -->
                                 <h5 class="dropdown-header">MANAGE</h5>
                                 <a class="dropdown-item" href="{% url 'user-posts' user.username %}">
                                     <i class="fa fa-book fa-fw" aria-hidden="true"></i>&nbsp; Posts
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <!-- {% if user.is_superuser %}
-                                <a class="dropdown-item" href="#">
-                                    <i class="fa fa-cog fa-fw" aria-hidden="true"></i>&nbsp; Adminstration</a>
-                                {% endif %} -->
+                            <a class="dropdown-item" href="#">
+                                <i class="fa fa-cog fa-fw" aria-hidden="true"></i>&nbsp; Adminstration</a>
+                            {% endif %} -->
                                 <a class="dropdown-item" href="{% url 'logout' %}">
                                     <i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>&nbsp; Logout</a>
 
@@ -119,36 +108,37 @@
                         {% endif %}
                     </div>
                     <!-- <div id="settings">
-                            <a href="#" data-content="Settings"  data-placement="bottom" data-toggle="tooltip"  data-trigger="hover">
-                                    <i class="icon-cog icon-white"></i>
-                                    <img src="{% static 'blog/img/settings.png' %}"/>
-                            </a>
-                        </div> -->
+                        <a href="#" data-content="Settings"  data-placement="bottom" data-toggle="tooltip"  data-trigger="hover">
+                                <i class="icon-cog icon-white"></i>
+                                <img src="{% static 'blog/img/settings.png' %}"/>
+                        </a>
+                    </div> -->
                     <!-- <span class="sr-only">(current)</span> -->
-                    <!-- <form class="form-inline my-2 my-lg-0">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
-                        </form> -->
                 </div>
             </div>
         </nav>
     </header>
+
     <!-- Begin page content -->
-    <main role="main" class="flex-shrink-0 mt-5">
+    <main role="main" class="flex-shrink-0 pt-2 mt-5">
         <div class="container">
+            <div class="flex pt-5 d-lg-none d-xl-none">
+                <form method="get" action="{% url 'post-search' %}" role="search">
+                    <div class="input-group mb-3">
+                        <input type="search" class="form-control" placeholder="Search..." aria-label="Search" name="term" aria-describedby="button-addon2" value="{{ term }}" required/>
+                        <div class="input-group-append">
+                            <!-- <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button> -->
+                            <button class="btn btn-outline-primary" type="submit" id="button-addon2">Search</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
 
             <div class="row">
                 <!-- only small devices -->
-                <!-- <form method="get" action="{% url 'post-search' %}" class="form-inline col-md-8 mt-4 d-lg-none" role="search">
-                    <div class="form-group">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search..." aria-label="Search" name="term" value="{{ term }}" />
-                        <span class="input-group-btn d-none d-sm-block">
-                            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Go</button>
-                        </span>
-                    </div>
-                </form> -->
-                <!-- only small devices -->
-                <div class="col-12 col-md-8 my-4 p-3 mb-5 bg-white">
+
+                <div class="col-12 col-lg-8 my-4 p-2 mb-5 bg-white">
 
                     <!-- <span class="mt-5"></span> -->
                     <!-- <h1 class="mt-5"></h1> -->
@@ -159,20 +149,21 @@
                     {% endfor %} {% endif %} {% block content %}{% endblock %}
                 </div>
                 <!-- Sidebar Widgets Column -->
-                <div class="col-12 col-md-4 p-3">
+                <div class="col-12 col-lg-4 p-3">
                     <div class="my-4">
                         <div class="accordion" id="accordionExample">
                             <div class="card">
                                 <div class="card-header p-2" id="headingOne">
                                     <h5 class="mb-0">
                                         <a href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            <img class="ml-1" src="{% static 'blog/img/speech-bubbles-comment_b.svg' %}" width="25" height="25"> Most commented posts
+                                            <!--                                            <img class="ml-1" src="{% static 'blog/img/speech-bubbles-comment_b.svg' %}" width="25" height="25"> -->
+                                            Most commented posts
                                         </a>
                                     </h5>
                                 </div>
 
                                 <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                    <div class="card-body shadow-none mb-2 bg-light rounded py-2 px-0">
+                                    <div class="card-body shadow-none mb-2 p-2 border rounded py-2 px-0">
                                         {% most_commented_posts 3 %}
                                     </div>
                                 </div>
@@ -181,13 +172,14 @@
                                 <div class="card-header p-2" id="headingOne">
                                     <h5 class="mb-0">
                                         <a href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            <img class="ml-1" src="{% static 'blog/img/clapping_filled.svg' %}" width="25" height="25"> Most clapped posts
+                                            <!--                                            <img class="ml-1" src="{% static 'blog/img/clapping_filled.svg' %}" width="25" height="25">-->
+                                            Most clapped posts
                                         </a>
                                     </h5>
                                 </div>
 
                                 <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                    <div class="card-body shadow-none mb-2 bg-light rounded py-2 px-0">
+                                    <div class="card-body shadow-none p-2 mb-2 border rounded py-2 px-0">
                                         {% most_clapped_posts 3 %}
                                     </div>
                                 </div>
@@ -199,40 +191,6 @@
 
                         </div>
                     </div>
-                    <!-- Categories Widget -->
-                    <!-- <div class="card my-4">
-                        <h5 class="card-header">Tags</h5>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <ul class="list-unstyled mb-0">
-                                        <li>
-                                            <a href="#">Web Design</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">HTML</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Freebies</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-lg-6">
-                                    <ul class="list-unstyled mb-0">
-                                        <li>
-                                            <a href="#">JavaScript</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">CSS</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Tutorials</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
 
                 </div>
             </div>
@@ -247,49 +205,36 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
     <script src="https://code.jquery.com/jquery-3.4.0.slim.min.js" integrity="sha256-ZaXnYkHGqIhqTbJ6MB4l9Frs/r7U4jlx7ir8PJYBqbI=" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/@bootstrapstudio/bootstrap-better-nav/dist/bootstrap-better-nav.min.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
 
-    <!-- <script src="{% static 'blog/highlight/highlight.pack.js' %}"></script> -->
-    <!-- <script src="{% static 'blog/js/jquery-3.3.1.slim.min.js' %}"></script> -->
-    <!-- <script src="{% static 'blog/js/popper.min.js' %}"></script> -->
-    <!-- <script src="{% static 'blog/js/bootstrap.min.js' %}"></script> -->
-    <!-- <script src="{% static 'blog/js/bootstrap-better-nav.min.js' %}"></script> -->
-    <!-- <script src="{% static 'blog/js/clap.js' %}"></script> -->
-    <!-- <script src="{% static 'blog/js/js.cookie.js' %}"> -->
-    <script>
-        hljs.initHighlightingOnLoad();
-        // using jQuery
-        function getCookie(name) {
-            var cookieValue = null;
-            if (document.cookie && document.cookie !== '') {
-                var cookies = document.cookie.split(';');
-                for (var i = 0; i < cookies.length; i++) {
-                    var cookie = jQuery.trim(cookies[i]);
-                    // Does this cookie string begin with the name we want?
-                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                        break;
-                    }
-                }
-            }
-            return cookieValue;
-        }
-        var csrftoken = getCookie('csrftoken');
 
-        function csrfSafeMethod(method) {
-            // these HTTP methods do not require CSRF protection
-            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-        }
-        $.ajaxSetup({
-            beforeSend: function(xhr, settings) {
-                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
-                }
+    <!--    development-->
+    <!-- <script src="{% static 'blog/dev_static/jquery-3.3.1.slim.min.js' %}"></script>
+    <script src="{% static 'blog/dev_static/popper.min.js' %}"></script>
+    <script src="{% static 'blog/dev_static/bootstrap-4.2.1/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'blog/dev_static/bootstrap-better-nav.min.js' %}"></script>
+
+    <script src="{% static 'blog/dev_static/highlight/highlight.pack.js' %}"></script>
+    <script src="{% static 'blog/dev_static/js.cookie.js' %}"></script> -->
+    <script>
+        hljs.initHighlightingOnLoad(); // using jQuery function getCookie(name) { var cookieValue = null; if (document.cookie && document.cookie !== '') { var cookies = document.cookie.split(';'); for (var i = 0; i
+        <
+        cookies.length;
+        i++) {
+            var cookie = j
+            Query.trim(cookies[i]); // Does this cookie string begin with the name we want? if (cookie.substring(0, name.length + 1)===( name + '=')) { cookieValue=d ecodeURIComponent(cookie.substring(name.length + 1)); break; } } } return cookieValue; }
+            var csrftoken = g etCookie('csrftoken');
+
+            function csrfSafeMethod(method) { // these HTTP methods do not require CSRF protection return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method)); } $.ajaxSetup({ beforeSend: function(xhr, settings) { if (!csrfSafeMethod(settings.type)
+                &&
+                !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
             }
+        }
         });
     </script>
 

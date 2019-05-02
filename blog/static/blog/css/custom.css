@@ -1,6 +1,48 @@
 body {
-    text-rendering: optimizeLegibility;
-    font-family: 'Roboto', sans-serif, Georgia, Cambria, "Times New Roman";
+    font-family: Georgia, 'Roboto', sans-serif, Cambria, "Times New Roman";
+    font-size: 1em;
+    color: #34495e;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal;
+}
+
+a {
+    color: #34495e;
+    text-decoration-color: #34495e;
+}
+
+a:hover {
+    text-decoration-line: underline;
+    color: #34495e;
+}
+
+.card-header a {
+    color: white;
+    /* text-decoration: none; */
+}
+
+p a {
+    text-decoration-line: underline;
+    /* text-decoration-style: solid; */
+}
+
+.blog-post-title {
+    color: #34495e;
+    text-decoration-color: #343434;
+    font-size: 28px;
+    font-weight: 700
+}
+
+.profile-name {
+    font-size: 26px;
+    font-weight: 500;
 }
 
 .list-group-item.active {
@@ -28,43 +70,21 @@ body {
     border-bottom: 0px solid #34495e;
 }
 
-.card-header a {
-    color: white;
-    text-decoration: none;
-}
-
-#all-right #app-name,
-#all-right #app-suffixe {
-    font-size: 18px;
-}
-
 #app-name {
-    /* color: #6699ff; */
     display: inline-block;
-    /* font-family: "Gabriola"; */
-    font-family: 'Tangerine', serif;
+    font-family: 'Gabriola', 'Segoe UI', Tahoma, Geneva, sans-serif;
     font-size: 1.5em;
 }
 
 #logo {
     color: white;
     display: inline-block;
-    /* font-family: "Gabriola"; */
-    font-family: 'Tangerine', serif;
-    margin-top: 3px;
-    font-size: 1.5em;
 }
 
 h1#app-name {
     color: white;
-    font-size: 1.2rem;
+    font-size: 1.4em;
     font-weight: bold;
-}
-
-#user-username,
-#logo a {
-    text-decoration: none;
-    color: white;
 }
 
 .dropdown-item {
@@ -92,17 +112,10 @@ h1#app-name {
     /* from #34495e to bold */
 }
 
-a.blog-post-title:focus,
-a.blog-post-title:hover,
-a.blog-post-author:focus,
-a.blog-post-author:hover {
-    background-color: inherit;
-}
-
-
-.blog-post-content {
+p {
     line-height: 1.87;
     letter-spacing: -.001em;
+    color: #212529;
 }
 
 .navbar-light .navbar-toggler {
@@ -158,18 +171,8 @@ a.blog-post-author:hover {
     border-color: #34495e;
 }
 
-
-/* element.style {
-    padding: 0%;
-} */
-
 div#start-post-text.list-group-item {
-    /* position: relative;
-    display: block; */
     padding: 0%;
-    /* margin-bottom: -1px;
-    background-color: #fff; */
-    /* border: 1px solid rgba(0,0,0,.125); */
 }
 
 div#start-post-submit.list-group-item {
