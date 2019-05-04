@@ -9,6 +9,7 @@ from django.utils.translation import gettext_lazy as _
 #     def use_required_attribute(self, *args):
 #         return False
 
+
 class CommentForm(forms.ModelForm):
     # content = forms.CharField(widget=TinyMCE(mce_attrs={'width': 750,'height':300}))
     # content = forms.CharField(

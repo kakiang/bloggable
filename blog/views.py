@@ -63,9 +63,9 @@ class PostListView(ListView):
     template_name = 'blog/home.html'
     context_object_name = 'posts'
     # ordering = ['-created']
-    paginate_by = 3
+    paginate_by = 5
 
-    def get_context_data(self,**kwargs):
+    def get_context_data(self, **kwargs):
         context = super(PostListView, self).get_context_data(**kwargs)
         # context['search_form'] = SearchForm
         return context
@@ -76,16 +76,16 @@ class PostListViewByTag(ListView):
     template_name = 'blog/home.html'
     context_object_name = 'posts'
     # ordering = ['-created']
-    paginate_by = 3
+    paginate_by = 5
 
     def get_queryset(self):
-        qs = super(PostListViewByTag,self).get_queryset()
-        self.tag = get_object_or_404(Tag,slug=self.kwargs.get('tag_slug'))
+        qs = super(PostListViewByTag, self).get_queryset()
+        self.tag = get_object_or_404(Tag, slug=self.kwargs.get('tag_slug'))
         return qs.filter(tags__in=[self.tag])
 
-    def get_context_data(self,**kwargs):
-        context=super(PostListViewByTag,self).get_context_data(**kwargs)
-        context['tag']=self.tag
+    def get_context_data(self, **kwargs):
+        context = super(PostListViewByTag, self).get_context_data(**kwargs)
+        context['tag'] = self.tag
         return context
 
 
@@ -97,7 +97,7 @@ class UserPostListView(ListView):
 
     def get_queryset(self):
         qs = super(UserPostListView, self).get_queryset()
-        self.user = get_object_or_404(User,username=self.kwargs.get('username'))
+        self.user = get_object_or_404(User, username=self.kwargs.get('username'))
         return qs.filter(author=self.user).order_by('-publish')
 
     def get_context_data(self, **kwargs):
@@ -114,19 +114,20 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         post = self.get_object()
         return self.request.user == post.author or self.request.user.is_superuser
 
+
 class PostDisplayView(DetailView):
     model = Post
     context_object_name = 'post'
-    query_pk_and_slug=True
+    query_pk_and_slug = True
 
     def get_object(self):
-        object = super(PostDisplayView, self).get_object()
-        object.view_count += 1
-        object.save(update_fields=['view_count'])
-        return object
+        object_post = super(PostDisplayView, self).get_object()
+        object_post.view_count += 1
+        object_post.save(update_fields=['view_count'])
+        return object_post
 
     def get_context_data(self, **kwargs):
-        context = super(PostDisplayView,self).get_context_data(**kwargs)
+        context = super(PostDisplayView, self).get_context_data(**kwargs)
         context['comments'] = Comment.objects.filter(post=self.get_object())
         context['comment_form'] = CommentForm
         return context
@@ -147,7 +148,7 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('post-detail', kwargs={'slug':self.kwargs['slug']})
+        return reverse('post-detail', kwargs={'slug': self.kwargs['slug']})
 
 
 class PostDetailView(View):
@@ -162,24 +163,22 @@ class PostDetailView(View):
 
 
 class SearchPostView(TemplateView):
-
     template_name = 'blog/home.html'
 
-    def get_context_data(self,**kwargs):
-        term = self.request.GET.get('term',None)
+    def get_context_data(self, **kwargs):
+        term = self.request.GET.get('term', None)
         # print("term:{}".format(term))
-        context=super().get_context_data(term=term, **kwargs)
+        context = super().get_context_data(term=term, **kwargs)
         if term:
-            posts=Post.published.all().filter(Q(content__icontains=term) | Q(title__icontains=term))
-            context['posts']=posts
+            posts = Post.published.all().filter(Q(content__icontains=term) | Q(title__icontains=term))
+            context['posts'] = posts
             # print(posts.count)
         # context['search_form']=SearchForm
-        context['search']=term
+        context['search'] = term
         return context
 
 
 def post_share_email(request, post_id):
-
     post = get_object_or_404(Post, id=post_id)
     sent = False
 
@@ -187,23 +186,24 @@ def post_share_email(request, post_id):
         form = SharePostEmailForm(request.POST)
 
         if form.is_valid():
-            mail=form.cleaned_data()
-            post_url=request.build_absolute_url(post.get_absolute_url())
-            subject='{}({}) recommends you reading "{}"'.format(mail['name'],mail['sender'],post.title)
-            message=mail['message']
-            name=mail['name']
-            sender=mail['sender']
-            recipient=mail['recipient']
+            mail = form.cleaned_data()
+            post_url = request.build_absolute_url(post.get_absolute_url())
+            subject = '{}({}) recommends you reading "{}"'.format(mail['name'], mail['sender'], post.title)
+            message = mail['message']
+            name = mail['name']
+            sender = mail['sender']
+            recipient = mail['recipient']
     else:
         form = SharePostEmailForm(sender=request.user.email, name=request.user.first_name)
 
-    return render(request, 'blog/share.html',)
+    return render(request, 'blog/share.html', )
+
 
 class PostLikeViewRedirect(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         slug = self.kwargs.get('slug')
         print(slug)
-        object = get_object_or_404(Post,slug=slug)
+        object = get_object_or_404(Post, slug=slug)
         url_ = object.get_absolute_url()
         user = self.request.user
         if user.is_authenticated:
@@ -212,6 +212,7 @@ class PostLikeViewRedirect(RedirectView):
             else:
                 object.users_clap.add(user)
         return url_
+
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -224,7 +225,7 @@ class PostLikeAPI(APIView):
 
     def get(self, request, slug=None, format=None):
         # slug = self.kwargs.get('slug')
-        object = get_object_or_404(Post,slug=slug)
+        object = get_object_or_404(Post, slug=slug)
         url_ = object.get_absolute_url()
         user = self.request.user
         updated = False
@@ -237,8 +238,8 @@ class PostLikeAPI(APIView):
                 liked = False
                 object.users_clap.add(user)
         data = {
-            'updated':updated,
-            'liked':liked
+            'updated': updated,
+            'liked': liked
         }
         return Response(data)
 
@@ -248,7 +249,7 @@ def post_like(request):
     action = request.POST.get('action')
     print('post_like')
     if post_id and action:
-        print('id={}, action={}'.format(post_id,action))
+        print('id={}, action={}'.format(post_id, action))
         try:
             post = Post.objects.get(pk=post_id)
             if action == 'like':
@@ -257,10 +258,10 @@ def post_like(request):
             else:
                 print('unlike action')
                 post.users_clap.remove(request.user)
-            return JsonResponse({'status':'ok'})
+            return JsonResponse({'status': 'ok'})
         except:
             pass
-    return JsonResponse({'status':'ok'})
+    return JsonResponse({'status': 'ok'})
 
 
 # from django.conf import settings

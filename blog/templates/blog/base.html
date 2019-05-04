@@ -1,5 +1,5 @@
 {% load static %} {% load blog_tags %}
-<!DOCTYPE html>
+<!--<!DOCTYPE html>-->
 <html lang="en">
 
 <head>
@@ -8,243 +8,273 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
 
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://unpkg.com/@bootstrapstudio/bootstrap-better-nav/dist/bootstrap-better-nav.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/monokai.min.css" integrity="sha256-/d3ZZC6Gr1V8JDi9Os6A2CjemarhIv16pw1Q6snL+lM=" crossorigin="anonymous" />
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"-->
+<!--          integrity="sha256-gvEnj2axkqIj4wbYhPjbWV7zttgpzBVEgHub9AAZQD4=" crossorigin="anonymous"/>-->
+<!--    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"-->
+<!--          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
+<!--    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"-->
+<!--          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">-->
+<!--    <link rel="stylesheet"-->
+<!--          href="https://unpkg.com/@bootstrapstudio/bootstrap-better-nav/dist/bootstrap-better-nav.min.css">-->
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/monokai.min.css"-->
+<!--          integrity="sha256-/d3ZZC6Gr1V8JDi9Os6A2CjemarhIv16pw1Q6snL+lM=" crossorigin="anonymous"/>-->
+<!--    <link rel="stylesheet"-->
+<!--          href="https://gist.githubusercontent.com/kakiang/1c01d2f75064d9b40636271ba73ebc85/raw/afc926be8f9d6f4565f763bd2c17dea98533f140/custom.css"/>-->
+<!--    <link rel="stylesheet"-->
+<!--          href="https://gist.githubusercontent.com/kakiang/925a7f056e5eb24a8b8d5d210208629c/raw/6cccc52bc452bcbc0b1dea13489bb912ba6c2e73/sticky-footer.css"/>-->
 
-    <!-- <link rel="stylesheet" href="{% static 'blog/dev_static/reset.css' %}">
+  <link rel="stylesheet" href="{% static 'blog/dev_static/reset.css' %}">
     <link rel="stylesheet" href="{% static 'blog/dev_static/bootstrap-4.2.1/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'blog/dev_static/fontawesome-5.7.2/css/font-awesome.min.css' %}">
     <link rel="stylesheet" href="{% static 'blog/dev_static/highlight/monokai.css' %}">
-    <link rel="stylesheet" href="{% static 'blog/dev_static/bootstrap-better-nav.min.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'blog/dev_static/bootstrap-better-nav.min.css' %}">
 
-    <link rel="stylesheet" href="{% static 'blog/css/sticky-footer.css' %}">
-    <link rel="stylesheet" href="{% static 'blog/css/custom.css' %}"> {% block head%} {% endblock %}
+        <link rel="stylesheet" href="{% static 'blog/css/sticky-footer.css' %}">
+        <link rel="stylesheet" href="{% static 'blog/css/custom.css' %}">
+    {% block head%} {% endblock %}
     <title>{% block title%} {% endblock %}</title>
 </head>
 
 <body>
-    <header id="header">
-        <nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: #34495e;">
-            <div class="container">
-                <div id="logo">
-                    <a class="navbar-brand" href="{% url 'blog-home' %}">
-                        <!-- <img src="{% static 'blog/img/logo.png' %}" width="40" height="40" class="d-inline-block align-top" alt=""/> -->
-                        <h1 id="app-name">
-                            Bloggable
-                        </h1>
-                    </a>
-                </div>
-                <!-- only small devices -->
-                <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<header id="header">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: #34495e;">
+        <div class="container">
+            <div id="logo">
+                <a class="navbar-brand" href="{% url 'blog-home' %}">
+                    <!-- <img src="{% static 'blog/img/logo.png' %}" class="d-inline-block align-top" alt=""/> -->
+                    <h1 id="app-name">
+                        Bloggable
+                    </h1>
+                </a>
+            </div>
+            <!-- only small devices -->
+            <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <div id="navbar-menu" class="navbar-nav mr-auto">
-                        <a class="nav-item nav-link" href="{% url 'blog-home' %}">
-                            <i class="fa fa-home" aria-hidden="true"></i>&nbsp;Home
-                        </a>
-                        <span class="divider-vertical"></span> {% if user.is_authenticated %}
-                        <a class="nav-item nav-link" href="{% url 'post-create' %}">
-                            <!-- <img src="{% static 'blog/img/newspaper-white.svg' %}" alt="clap" width="15" height="15"> -->
-                            <i class="fa fa-pencil fa-fw" aria-hidden="true"></i> Post
-                        </a>
-                        {% endif %}
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div id="navbar-menu" class="navbar-nav mr-auto">
+                    <a class="nav-item nav-link" href="{% url 'blog-home' %}">
+                        <i class="fa fa-home" aria-hidden="true"></i>&nbsp;Home
+                    </a>
+                    <span class="divider-vertical"></span> {% if user.is_authenticated %}
+                    <a class="nav-item nav-link" href="{% url 'post-create' %}">
+                        <!-- <img src="{% static 'blog/img/newspaper-white.svg' %}" alt="clap" width="15" height="15"> -->
+                        <i class="fa fa-pencil fa-fw" aria-hidden="true"></i> Post
+                    </a>
+                    {% endif %}
 
-                        <form method="get" action="{% url 'post-search' %}" class="form-inline navbar-form ml-4 my-lg-0 d-none d-lg-block" role="search" novalidate>
-                            <div class="form-group">
-                                <input class="form-control mr-sm-2" type="search" placeholder="Search..." aria-label="Search" name="term" value="{{ term }}" required/>
-                                <!-- {{ search_form }} -->
-                                <span class="input-group-btn">
+                    <form method="get" action="{% url 'post-search' %}"
+                          class="form-inline navbar-form ml-4 my-lg-0 d-none d-lg-block" role="search" novalidate>
+                        <div class="form-group">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search..."
+                                   aria-label="Search" name="term" value="{{ term }}" required/>
+                            <!-- {{ search_form }} -->
+                            <span class="input-group-btn">
                                     <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
                                 </span>
-                            </div>
-                        </form>
-                    </div>
-
-
-                    <div id="user-avatar-menu" class="navbar-nav ml-auto">
-
-                        {% if user.is_authenticated %}
-
-                        <div class="dropdown show ml-0 mt-sm-2">
-                            <a id="user-username" class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="rounded-circle" src="{{ user.profile.image.url }}" id="user-avatar" />
-                                <span class="pl-2 nav-item nav-link d-inline-block">{{ user.username|upper }}</span>
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-right mt-3" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="{% url 'profile' %}">
-                                    <i class="fa fa-id-badge fa-fw"></i>&nbsp; View Profile
-                                </a>
-                                <!-- <a class="dropdown-item" href="#">
-                                <i class="fa fa-cog fa-fw" aria-hidden="true"></i>&nbsp; Settings
-                            </a> -->
-                                <!-- <h5 class="dropdown-header">ACCOUNT</h5>
-                            <a class="dropdown-item" href="#">Settings</a>
-                            <a class="dropdown-item" href="#">Language</a> -->
-                                <h5 class="dropdown-header">MANAGE</h5>
-                                <a class="dropdown-item" href="{% url 'user-posts' user.username %}">
-                                    <i class="fa fa-book fa-fw" aria-hidden="true"></i>&nbsp; Posts
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <!-- {% if user.is_superuser %}
-                            <a class="dropdown-item" href="#">
-                                <i class="fa fa-cog fa-fw" aria-hidden="true"></i>&nbsp; Adminstration</a>
-                            {% endif %} -->
-                                <a class="dropdown-item" href="{% url 'logout' %}">
-                                    <i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>&nbsp; Logout</a>
-
-                            </div>
                         </div>
+                    </form>
+                </div>
 
-                        {% else %}
-                        <a class="nav-item nav-link" href="{% url 'register' %}">
-                            <i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> Register</a>
-                        <a class="nav-item nav-link" href="{% url 'login' %}">
-                            <i class="fa fa-sign-in fa-fw" aria-hidden="true"></i> Login</a>
-                        {% endif %}
-                    </div>
-                    <!-- <div id="settings">
-                        <a href="#" data-content="Settings"  data-placement="bottom" data-toggle="tooltip"  data-trigger="hover">
-                                <i class="icon-cog icon-white"></i>
-                                <img src="{% static 'blog/img/settings.png' %}"/>
+
+                <div id="user-avatar-menu" class="navbar-nav ml-auto">
+
+                    {% if user.is_authenticated %}
+
+                    <div class="dropdown show ml-0 mt-sm-2">
+                        <a id="user-username" class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="rounded-circle" src="{{ user.profile.image.url }}" id="user-avatar"/>
+                            <span class="pl-2 nav-item nav-link d-inline-block">{{ user.username|upper }}</span>
                         </a>
-                    </div> -->
-                    <!-- <span class="sr-only">(current)</span> -->
-                </div>
-            </div>
-        </nav>
-    </header>
 
-    <!-- Begin page content -->
-    <main role="main" class="flex-shrink-0 pt-2 mt-5">
-        <div class="container">
-            <div class="flex pt-5 d-lg-none d-xl-none">
-                <form method="get" action="{% url 'post-search' %}" role="search">
-                    <div class="input-group mb-3">
-                        <input type="search" class="form-control" placeholder="Search..." aria-label="Search" name="term" aria-describedby="button-addon2" value="{{ term }}" required/>
-                        <div class="input-group-append">
-                            <!-- <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button> -->
-                            <button class="btn btn-outline-primary" type="submit" id="button-addon2">Search</button>
-                        </div>
-                    </div>
-                </form>
-
-            </div>
-
-            <div class="row">
-                <!-- only small devices -->
-
-                <div class="col-12 col-lg-8 my-4 p-2 mb-5 bg-white">
-
-                    <!-- <span class="mt-5"></span> -->
-                    <!-- <h1 class="mt-5"></h1> -->
-                    {% if messages %} {% for message in messages %}
-                    <div class="alert alert-{{message.tags}}">
-                        {{ message }}
-                    </div>
-                    {% endfor %} {% endif %} {% block content %}{% endblock %}
-                </div>
-                <!-- Sidebar Widgets Column -->
-                <div class="col-12 col-lg-4 p-3">
-                    <div class="my-4">
-                        <div class="accordion" id="accordionExample">
-                            <div class="card">
-                                <div class="card-header p-2" id="headingOne">
-                                    <h5 class="mb-0">
-                                        <a href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            <!--                                            <img class="ml-1" src="{% static 'blog/img/speech-bubbles-comment_b.svg' %}" width="25" height="25"> -->
-                                            Most commented posts
-                                        </a>
-                                    </h5>
-                                </div>
-
-                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                    <div class="card-body shadow-none mb-2 p-2 border rounded py-2 px-0">
-                                        {% most_commented_posts 3 %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header p-2" id="headingOne">
-                                    <h5 class="mb-0">
-                                        <a href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            <!--                                            <img class="ml-1" src="{% static 'blog/img/clapping_filled.svg' %}" width="25" height="25">-->
-                                            Most clapped posts
-                                        </a>
-                                    </h5>
-                                </div>
-
-                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                    <div class="card-body shadow-none p-2 mb-2 border rounded py-2 px-0">
-                                        {% most_clapped_posts 3 %}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-4">
-                            <a href="{% url 'posts-feed' %}">
-                                <i class="fa fa-rss-square" aria-hidden="true"></i> Subscribe to RSS Feed</a>
+                        <div class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="{% url 'profile' %}">
+                                <i class="fa fa-id-badge fa-fw"></i>&nbsp; View Profile
+                            </a>
+                            <!-- <a class="dropdown-item" href="#">
+                            <i class="fa fa-cog fa-fw" aria-hidden="true"></i>&nbsp; Settings
+                        </a> -->
+                            <!-- <h5 class="dropdown-header">ACCOUNT</h5>
+                        <a class="dropdown-item" href="#">Settings</a>
+                        <a class="dropdown-item" href="#">Language</a> -->
+                            <h5 class="dropdown-header">MANAGE</h5>
+                            <a class="dropdown-item" href="{% url 'user-posts' user.username %}">
+                                <i class="fa fa-book fa-fw" aria-hidden="true"></i>&nbsp; Posts
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <!-- {% if user.is_superuser %}
+                        <a class="dropdown-item" href="#">
+                            <i class="fa fa-cog fa-fw" aria-hidden="true"></i>&nbsp; Adminstration</a>
+                        {% endif %} -->
+                            <a class="dropdown-item" href="{% url 'logout' %}">
+                                <i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>&nbsp; Logout</a>
 
                         </div>
                     </div>
 
+                    {% else %}
+                    <a class="nav-item nav-link" href="{% url 'register' %}">
+                        <i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> Register</a>
+                    <a class="nav-item nav-link" href="{% url 'login' %}">
+                        <i class="fa fa-sign-in fa-fw" aria-hidden="true"></i> Login</a>
+                    {% endif %}
                 </div>
+                <!-- <span class="sr-only">(current)</span> -->
             </div>
         </div>
-    </main>
-    <footer class="footer mt-auto py-3">
-        <div class="container">
+    </nav>
+</header>
+
+<!-- Begin page content -->
+<main role="main" class="flex-shrink-0 pt-2 mt-5">
+    <div class="container">
+        <div class="flex pt-5 d-lg-none d-xl-none">
+            <form method="get" action="{% url 'post-search' %}" role="search">
+                <div class="input-group mb-3">
+                    <input type="search" class="form-control" placeholder="Search..." aria-label="Search"
+                           name="term" aria-describedby="button-addon2" value="{{ term }}" required/>
+                    <div class="input-group-append">
+                        <!-- <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button> -->
+                        <button class="btn btn-outline-primary" type="submit" id="button-addon2">Search</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+        <div class="row">
+            <!-- only small devices -->
+
+            <div class="col-12 col-lg-8 my-4 p-3 mb-5 bg-white">
+
+                <!-- <span class="mt-5"></span> -->
+                <!-- <h1 class="mt-5"></h1> -->
+                {% if messages %} {% for message in messages %}
+                <div class="alert alert-{{message.tags}}">
+                    {{ message }}
+                </div>
+                {% endfor %} {% endif %} {% block content %}{% endblock %}
+            </div>
+            <!-- Sidebar Widgets Column -->
+            <div class="col-12 col-lg-4 p-3">
+                <div class="my-4">
+                    <div class="accordion" id="accordionExample">
+                        <div class="card mb-3">
+                            <div class="card-header p-2" id="headingOne">
+                                <h5 class="mb-0">
+                                    <a href="#" data-toggle="collapse" data-target="#collapseOne"
+                                       aria-expanded="true" aria-controls="collapseOne">
+                                        <!--<img class="ml-1" src="{% static 'blog/img/speech-bubbles-comment_b.svg' %}"> -->
+                                        Most popular posts
+                                    </a>
+                                </h5>
+                            </div>
+
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                 data-parent="#accordionExample">
+                                <div class="card-body shadow-none mb-2 p-2 border py-2 px-0">
+                                    {% most_commented_posts 3 %}
+                                </div>
+                            </div>
+                        </div>
+<!--                        <div class="card">-->
+<!--                            <div class="card-header p-2" id="headingOne">-->
+<!--                                <h5 class="mb-0">-->
+<!--                                    <a href="#" data-toggle="collapse" data-target="#collapseOne"-->
+<!--                                       aria-expanded="true" aria-controls="collapseOne">-->
+<!--                                        &lt;!&ndash;<img class="ml-1" src="{% static 'blog/img/clapping_filled.svg' %}">&ndash;&gt;-->
+<!--                                        Most clapped posts-->
+<!--                                    </a>-->
+<!--                                </h5>-->
+<!--                            </div>-->
+
+<!--                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"-->
+<!--                                 data-parent="#accordionExample">-->
+<!--                                <div class="card-body shadow-none p-2 mb-2 border py-2 px-0">-->
+<!--                                    {% most_clapped_posts 3 %}-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                    </div>
+                    <div class="mt-4">
+                        <a href="{% url 'posts-feed' %}">
+                            <i class="fa fa-rss-square" aria-hidden="true"></i> Subscribe to RSS Feed</a>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</main>
+<footer class="footer mt-auto py-3">
+    <div class="container">
             <span>Copyright &copy; <a style="color:white;text-decoration:none;" href="{% url 'hello-pdf' %}">
                     Bloggable</a> 2019</span>
-        </div>
-    </footer>
+    </div>
+</footer>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
-    <script src="https://code.jquery.com/jquery-3.4.0.slim.min.js" integrity="sha256-ZaXnYkHGqIhqTbJ6MB4l9Frs/r7U4jlx7ir8PJYBqbI=" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/@bootstrapstudio/bootstrap-better-nav/dist/bootstrap-better-nav.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+<!--<script src="https://code.jquery.com/jquery-3.4.0.slim.min.js"-->
+<!--        integrity="sha256-ZaXnYkHGqIhqTbJ6MB4l9Frs/r7U4jlx7ir8PJYBqbI=" crossorigin="anonymous"></script>-->
+<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"-->
+<!--        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="https://unpkg.com/@bootstrapstudio/bootstrap-better-nav/dist/bootstrap-better-nav.min.js"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.0/js.cookie.js"-->
+<!--        integrity="sha256-ZTMFCvouhTVozUsLgEjtZOlJY+OAiLImV1p8yoBU9OI=" crossorigin="anonymous"></script>-->
 
+<!--    development-->
+ <script src="{% static 'blog/dev_static/jquery-3.3.1.slim.min.js' %}"></script>
+<script src="{% static 'blog/dev_static/popper.min.js' %}"></script>
+<script src="{% static 'blog/dev_static/bootstrap-4.2.1/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'blog/dev_static/bootstrap-better-nav.min.js' %}"></script>
 
-    <!--    development-->
-    <!-- <script src="{% static 'blog/dev_static/jquery-3.3.1.slim.min.js' %}"></script>
-    <script src="{% static 'blog/dev_static/popper.min.js' %}"></script>
-    <script src="{% static 'blog/dev_static/bootstrap-4.2.1/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'blog/dev_static/bootstrap-better-nav.min.js' %}"></script>
+<script src="{% static 'blog/dev_static/highlight/highlight.pack.js' %}"></script>
+<script src="{% static 'blog/dev_static/js.cookie.js' %}"></script>
+<script>
+        hljs.initHighlightingOnLoad();
+        // using jQuery function getCookie(name) { 
+        // var cookieValue = null; if (document.cookie && document.cookie !== '') 
+        // { var cookies = document.cookie.split(';'); for (var i = 0; i
+        // <
+        // cookies.length;
+        // i++) {
+        //     var cookie = j
+        //     Query.trim(cookies[i]); 
+        // Does this cookie string begin with the name we want? 
+        // if (cookie.substring(0, name.length + 1)===( name + '=')) {
+        //  cookieValue=d ecodeURIComponent(cookie.substring(name.length + 1));
+        //  break; } } } return cookieValue; }
+        //     var csrftoken = g etCookie('csrftoken');
 
-    <script src="{% static 'blog/dev_static/highlight/highlight.pack.js' %}"></script>
-    <script src="{% static 'blog/dev_static/js.cookie.js' %}"></script> -->
-    <script>
-        hljs.initHighlightingOnLoad(); // using jQuery function getCookie(name) { var cookieValue = null; if (document.cookie && document.cookie !== '') { var cookies = document.cookie.split(';'); for (var i = 0; i
-        <
-        cookies.length;
-        i++) {
-            var cookie = j
-            Query.trim(cookies[i]); // Does this cookie string begin with the name we want? if (cookie.substring(0, name.length + 1)===( name + '=')) { cookieValue=d ecodeURIComponent(cookie.substring(name.length + 1)); break; } } } return cookieValue; }
-            var csrftoken = g etCookie('csrftoken');
+        //     function csrfSafeMethod(method) { 
+        // these HTTP methods do not require CSRF protection return 
+        // (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method)); } $.ajaxSetup({ beforeSend: function(xhr, settings) { if (!csrfSafeMethod(settings.type)
+        //         &&
+        //         !this.crossDomain) {
+        //         xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        //     }
+        // }
+        // });
 
-            function csrfSafeMethod(method) { // these HTTP methods do not require CSRF protection return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method)); } $.ajaxSetup({ beforeSend: function(xhr, settings) { if (!csrfSafeMethod(settings.type)
-                &&
-                !this.crossDomain) {
-                xhr.setRequestHeader("X-CSRFToken", csrftoken);
-            }
-        }
-        });
-    </script>
+</script>
 
-    <script>
+<script>
         $(document).ready(function() {
             { % block javascript %
             } { % endblock %
             }
         });
-    </script>
+
+</script>
 </body>
 
 </html>

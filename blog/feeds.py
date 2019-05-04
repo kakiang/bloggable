@@ -5,6 +5,7 @@ from django.utils.html import strip_tags
 
 from .models import Post
 
+
 class LatestPostsFeed(Feed):
     title = 'Bloggable'
     link = ''

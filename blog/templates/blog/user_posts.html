@@ -1,6 +1,6 @@
 {% extends "blog/base.html" %} {% load static %} {% block title %} Blog - Home {% endblock title %} {% block content %}
 <div class="mb-2 p-3">
-    <div class="media mb-4 pb-2">
+    <div class="media mb-2 pb-2">
         <img class="d-flex mr-3 rounded-circle" src="{{ author.profile.image.url }}" width="50" height="50" alt="" />
         <!-- <img class="d-flex mr-3 rounded-circle" src="{{ posts.author.profile.image.url }}" width="50" height="50" alt="" /> -->
         <div class="media-body">
@@ -69,12 +69,14 @@
                         <i class="fa fa-comments fa-fw" aria-hidden="true"></i> {% with ccount=post.comment_set.all.count %} {{ ccount }} comment{{ ccount|pluralize }} {% endwith %}
                     </a>
                 </div>
-                <div class="p-2 bd-highlight text-primary">
+<!--                <div class="p-2 bd-highlight text-primary">-->
 
-                    <img src="{% static 'blog/img/clapping_filled.svg' %}" alt="clap" width="20" height="20">
-                    <!-- <i class="fa fa-eye fa-fw" aria-hidden="true"></i> -->
-                    {% with count=post.users_clap.count %} {{ count }} clap{{ count|pluralize }} {% endwith %}
-                </div>
+<!--                    <img src="{% static 'blog/img/clapping_filled.svg' %}" alt="clap" width="20" height="20">-->
+<!--                    &lt;!&ndash; <i class="fa fa-eye fa-fw" aria-hidden="true"></i> &ndash;&gt;-->
+<!--                    {% with count=post.users_clap.count %} -->
+<!--                    {{ count }} clap{{ count|pluralize }} -->
+<!--                    {% endwith %}-->
+<!--                </div>-->
             </div>
         </div>
     </div>

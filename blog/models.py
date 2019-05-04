@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.signals import pre_save
 from django.template.defaultfilters import slugify
 from django.utils import timezone
 from django.urls import reverse
@@ -8,7 +9,10 @@ from django.contrib.auth.models import User
 from taggit.managers import TaggableManager
 from tinymce import HTMLField
 
+from .utils import get_read_time
+
 # Create your models here.
+
 
 class PublishedManager(models.Manager):
     def get_queryset(self):
@@ -18,6 +22,7 @@ class PublishedManager(models.Manager):
 #     def get_queryset(self):
 #         return super(PublishedManager,self).get_queryset().filter(status='published')
 
+
 class SearchManager(models.Manager):
     def search(self, **kwargs):
         # self.get_queryset()
@@ -25,6 +30,7 @@ class SearchManager(models.Manager):
         if kwargs.get('term', ''):
             qs = qs.filter(content__icontains=kwargs['term'])
         return qs
+
 
 class Post(models.Model):
     STATUS_CHOICES = (
@@ -41,6 +47,7 @@ class Post(models.Model):
     publish = models.DateTimeField(default=timezone.now)
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='published')
+    read_time = models.TimeField(null=True, blank=True)
     users_clap = models.ManyToManyField(User, related_name='posts_liked', blank=True)
     view_count = models.PositiveIntegerField(default=0)
     tags = TaggableManager(blank=True)
@@ -48,6 +55,10 @@ class Post(models.Model):
     objects = models.Manager()
     published = PublishedManager()
     searchManager = SearchManager()
+
+    def read_time_min(self):
+        print(self.read_time)
+        return self.read_time
 
     def claps_count(self):
         return self.users_clap.count()
@@ -73,11 +84,21 @@ class Post(models.Model):
     def get_clap_api_url(self):
         return reverse('post-api-clap', kwargs={'slug':self.slug})
 
-
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)
+        if self.content:
+            self.read_time = get_read_time(self.content)
         super(Post, self).save(*args, **kwargs)
+
+
+# def pre_save_post_receiver(instance, *args, **kwargs):
+#     if instance.content:
+#         instance.read_time = get_read_time(instance.content)
+#
+#
+# pre_save.connect(pre_save_post_receiver, sender=Post)
+
 
 class Comment(models.Model):
     # commentator_name = models.CharField(max_length=42)

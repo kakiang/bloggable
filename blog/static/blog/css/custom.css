@@ -23,11 +23,6 @@ a:hover {
     color: #34495e;
 }
 
-.card-header a {
-    color: white;
-    /* text-decoration: none; */
-}
-
 p a {
     text-decoration-line: underline;
     /* text-decoration-style: solid; */
@@ -63,28 +58,29 @@ p a {
 }
 
 .card-header {
-    /* padding: .75rem 1.25rem; */
     margin-bottom: 0;
     color: white;
     background-color: #34495e;
-    border-bottom: 0px solid #34495e;
+    /*border-bottom: 0px solid #34495e;*/
 }
+
+.card-header a {
+    color: white;
+    text-decoration: none;
+}
+
 
 #app-name {
     display: inline-block;
-    font-family: 'Gabriola', 'Segoe UI', Tahoma, Geneva, sans-serif;
+    font-family:'Gabriola';
+    font-weight:600;
     font-size: 1.5em;
+    color: white;
 }
 
 #logo {
     color: white;
     display: inline-block;
-}
-
-h1#app-name {
-    color: white;
-    font-size: 1.4em;
-    font-weight: bold;
 }
 
 .dropdown-item {
@@ -124,12 +120,9 @@ p {
     border-color: white;
 }
 
-.navbar-light .navbar-nav .nav-link {
-    color: white;
-}
-
-.navbar-light .navbar-nav .nav-link:hover {
-    color: #007bff;
+.navbar-light .navbar-nav .nav-item a {
+    background-color: white;
+    color: #34495e;
 }
 
 .navbar-light .navbar-nav .nav-item a:hover {
@@ -137,15 +130,18 @@ p {
     color: #007bff;
 }
 
-
-/* #navbar-menu {
-    text-transform: uppercase;
-} */
-
-.navbar-light .navbar-nav .nav-item a {
-    background-color: white;
-    color: #34495e;
+.navbar-light .navbar-nav .nav-link {
+    color: white;
 }
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #fff;
+    /*text-decoration-line:underline;*/
+    border-radius: .25rem;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
 
 #user-avatar {
     max-height: 30px;
@@ -170,6 +166,10 @@ p {
     background-color: #34495e;
     border-color: #34495e;
 }
+/*.btn-outline-primary {
+    color: #b3feff;
+    border-color: #b3feff;
+}*/
 
 div#start-post-text.list-group-item {
     padding: 0%;
@@ -193,4 +193,11 @@ div#start-post-submit.list-group-item {
 
 .asteriskField {
     color: red;
+}
+
+.shrink-button {
+    padding-top: 2px;
+    padding-left: 4px;
+    padding-right: 3px;
+    padding-bottom: 2px;
 }

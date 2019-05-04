@@ -2,12 +2,13 @@
 .vscode/
 .idea/
 
-# Byte-compiled / optimized / DLL files
 *.pyc
 __pycache__/
+.pytest_cache/
 *.py[cod]
 *$py.class
 
+local_manage.py
 dev_static/
 dev_settings.py
 
