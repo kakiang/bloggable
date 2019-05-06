@@ -70,16 +70,16 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('post-detail', kwargs={'year':self.publish.year,
-                                              'month':self.publish.strftime('%m'),
-                                              'day':self.publish.strftime('%d'),
-                                              'slug':self.slug})
+        return reverse('post-detail', kwargs={'year': self.publish.year,
+                                              'month': self.publish.strftime('%m'),
+                                              'day': self.publish.strftime('%d'),
+                                              'slug': self.slug})
 
     def get_clap_url(self):
         return reverse('post-clap', kwargs={'year':self.publish.year,
-                                              'month':self.publish.strftime('%m'),
-                                              'day':self.publish.strftime('%d'),
-                                              'slug':self.slug})
+                                            'month': self.publish.strftime('%m'),
+                                            'day':self.publish.strftime('%d'),
+                                            'slug':self.slug})
 
     def get_clap_api_url(self):
         return reverse('post-api-clap', kwargs={'slug':self.slug})
@@ -107,8 +107,8 @@ class Comment(models.Model):
     # content = HTMLField('content')
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     created_on = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(User, related_name='blog_comments',
-                                on_delete=models.CASCADE)
+    author = models.ForeignKey(User, related_name='blog_comments', on_delete=models.CASCADE)
+    objects = models.Manager()
 
     class Meta:
         ordering = ('-created_on',)
@@ -117,7 +117,7 @@ class Comment(models.Model):
         return self.content
 
     def get_absolute_url(self):
-        return reverse('post-detail', kwargs={'year':self.post.publish.year,
-                                              'month':self.post.publish.strftime('%m'),
-                                              'day':self.post.publish.strftime('%d'),
-                                              'slug':self.post.slug})
+        return reverse('post-detail', kwargs={'year': self.post.publish.year,
+                                              'month': self.post.publish.strftime('%m'),
+                                              'day': self.post.publish.strftime('%d'),
+                                              'slug': self.post.slug})
