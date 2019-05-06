@@ -22,13 +22,22 @@ python -m venv bloggable_env
 
 source bloggable_env/bin/activate
 ```
-If you are using Windows you should run the activate script directly from the command shell. You shouldn't run `source bloggable_env/bin/activate`.
+If you are using Windows you should run the activate script directly from the command shell. You shouldn't 
+run `source bloggable_env/bin/activate`.
 
-The above commands will create a virtual environment in the `bloggable_env` folder. As a reminder, a virtual environment is an isolated Python environment that allows packages to be installed and to be used in a particular project. The packages installed in a virtual environmennt are not  installed system wide. That means, to be able to use those packages we have to switch to the virtual environment in which they are installed. That's what it's done with this command `source bloggable_env/bin/activate`. Virtual environment is a solution to potential dependency conflicts between python packages that one may use in ones projects. For example, if you are using python 2.7 for a project and python 3.7 for another project, you will need to create virtual environments to be able to have two different versions of python installed in your machine. It's a good practice. But it's optional, as long as you don't have dependency conflicts.
+The above commands will create a virtual environment in the `bloggable_env` folder. As a reminder, a virtual 
+environment is an isolated Python environment that allows packages to be installed and to be used in a particular project. 
+The packages installed in a virtual environment are not  installed system wide. That means, to be able to use those 
+packages we have to switch to the virtual environment in which they are installed. That's what it's done with this 
+command `source bloggable_env/bin/activate`. Virtual environment is a solution to potential dependency conflicts between 
+python packages that one may use in ones projects. For example, if you are using python 2.7 for a project and 
+python 3.7 for another project, you will need to create virtual environments to be able to have two different versions 
+of python installed in your machine. It's a good practice. But it's optional, as long as you don't have dependency conflicts.
 
-If you have `anaconda` or `miniconda` installed. It's kinda intuitive to `create`, `activate` and `deactivate` a virtual environment:
+If you have `anaconda` or `miniconda` installed, it's kinda intuitive to `create`, `activate` and `deactivate` 
+a virtual environment:
 
-To create a new virtual environment named `bloggable_env`
+To create a new virtual environment named `bloggable_env` run the following:
 ```bash
 conda create --name bloggable_env
 ```  
@@ -38,7 +47,7 @@ To activate the new environment to use it
 ```bash
 conda activate bloggable_env
 ```
-On older versions of `anaconda/minicinda` use 
+On older versions of `anaconda/miniconda` use 
 
 ```source activate bloggable_env```
 
@@ -56,17 +65,23 @@ conda deactivate
 
 ### 3. Install dependencies
 
-Once you've created and activated your virtual environment, you are now ready to install the project dependencies. Move to the __bloggable__ root directory and run `pip install -r requirements.txt` in your terminal.
+Once you've created and activated your virtual environment, you are now ready to install the project dependencies. 
+Move to the __bloggable__ root directory and run `pip install -r requirements.txt` in your terminal.
 ```
 cd bloggable/
 
 pip install -r requirements.txt
 ```
- This command will install all the packages that __bloggable__ project uses. They are listed in the [requirements.txt](https://github.com/kakiang/bloggable/blob/master/requirements.txt) file, as well as the versions that have been used.
+ This command will install all the packages that __bloggable__ project uses. They are listed in the 
+ [requirements.txt](https://github.com/kakiang/bloggable/blob/master/requirements.txt) file, as well as the versions 
+ that have been used.
 
  ## Usage
 
- Once everything is set (just follow what's outlined above and it'll be fine, if not just raise an issue), it's time to start the development server. And this is easily done with `python manage.py runserver`. `manage.py` is a file at the the project's root directory. It's technically a command-line utility that allows us to perform operations on our Django web app, operations such as creating apps, making migrations, running the development server, etc. 
+ Once everything is set (just follow what's outlined above and it'll be fine, if not just raise an issue), it's time 
+ to start the development server. And this is easily done with `python manage.py runserver`. `manage.py` is a file at 
+ the the project's root directory. It's technically a command-line utility that allows us to perform operations on our 
+ Django web app, operations such as creating apps, making migrations, running the development server, etc. 
  
  But before starting the development server let's create the models first. In other words we have to run migrations:
 
@@ -86,8 +101,8 @@ The command will output something like
 Performing system checks...
 
 System check identified no issues (0 silenced).
-January 25, 2019 - 09:48:36
-Django version 2.1, using settings 'bloggable.settings'
+May 06, 2019 - 18:42:22
+Django version 2.2, using settings 'bloggable.dev_settings'
 Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
 ```

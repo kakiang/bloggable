@@ -1,30 +1,32 @@
 {% extends "blog/base.html" %} {% load static %} {% block title %} Blog - Home {% endblock title %} {% block content %}
-<div class="mb-2 p-3">
+<div class="mb-2">
     <div class="media mb-2 pb-2">
         <img class="d-flex mr-3 rounded-circle" src="{{ author.profile.image.url }}" width="50" height="50" alt="" />
         <!-- <img class="d-flex mr-3 rounded-circle" src="{{ posts.author.profile.image.url }}" width="50" height="50" alt="" /> -->
         <div class="media-body">
 
-            <h1 class="d-inline mt-0 profile-name">
-                {{ author.first_name }} {{ author.last_name }},
-            </h1>
-            <span>{{ author.profile.position }}</span>
+            <h5 class="mt-0">
+                {{ author.first_name }} {{ author.last_name }}
+            </h5>
+            <h6 class="text-secondary">{{ author.profile.position }}</h6>
             <h6 class="mt-2 text-secondary">
 
                 <span>{{ page_obj.paginator.count }} posts</span>,
                 <span>{{ author.blog_comments.count }} comments</span>.
             </h6>
             <!-- <h5 class="text-secondary">Bio</h5> -->
+            {% if author.profile.bio %}
             <p class="mt-3">{{ author.profile.bio }}.</p>
+            {% endif %}
         </div>
 
     </div>
-    <h5 class="border-bottom media mb-2 pb-1 profile-name">
-        <!-- {{ view.kwargs.username }}'s Feed ({{ page_obj.paginator.count }} posts) -->
-        {{ author.first_name }} {{ author.last_name }}'s Feed ({{ page_obj.paginator.count }} posts)
-    </h5>
+<!--    <h5 class="media mb-2 pb-1">-->
+<!--        &lt;!&ndash; {{ view.kwargs.username }}'s Feed ({{ page_obj.paginator.count }} posts) &ndash;&gt;-->
+<!--        {{ author.first_name }} {{ author.last_name }}'s Feed ({{ page_obj.paginator.count }} posts)-->
+<!--    </h5>-->
     {% for post in posts %}
-    <div class="media shadow-sm p-3 mb-4 bg-white">
+    <div class="media shadow-sm p-3 mb-5 bg-white">
         <!-- <img class="d-flex mr-3 rounded-circle" src="{{ post.author.profile.image.url }}" width="50" height="50" alt=""> -->
         <div class="media-body">
             <h1 class="blog-post-title media-heading">
@@ -69,14 +71,6 @@
                         <i class="fa fa-comments fa-fw" aria-hidden="true"></i> {% with ccount=post.comment_set.all.count %} {{ ccount }} comment{{ ccount|pluralize }} {% endwith %}
                     </a>
                 </div>
-<!--                <div class="p-2 bd-highlight text-primary">-->
-
-<!--                    <img src="{% static 'blog/img/clapping_filled.svg' %}" alt="clap" width="20" height="20">-->
-<!--                    &lt;!&ndash; <i class="fa fa-eye fa-fw" aria-hidden="true"></i> &ndash;&gt;-->
-<!--                    {% with count=post.users_clap.count %} -->
-<!--                    {{ count }} clap{{ count|pluralize }} -->
-<!--                    {% endwith %}-->
-<!--                </div>-->
             </div>
         </div>
     </div>
