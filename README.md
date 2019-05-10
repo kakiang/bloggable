@@ -1,7 +1,7 @@
 # Bloggable  
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
-[![Build Status](https://travis-ci.org/kakiang/bloggable.svg?branch=master)](https://travis-ci.org/kakiang/bloggable)
+[![Build Status](https://travis-ci.org/kakiang/bloggable.svg?branch=master)](https://travis-ci.org/kakiang/bloggable) [![codecov](https://codecov.io/gh/TechnionYP5777/bloggable/branch/master/graph/badge.svg)](https://codecov.io/gh/TechnionYP5777/project-name)
 
 A full-featured blog with Django framework. I consider this project to be an advanced hello world in Django. So if 
 you are completely new to Django, you might want to hang out on the [Django website](https://docs.djangoproject.com) a 
