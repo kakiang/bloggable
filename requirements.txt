@@ -8,4 +8,4 @@ Pillow>=6.0.0
 python-dotenv>=0.10.1
 pytz>=2019.1
 reportlab>=3.5.20
-# django-webpack-loader
+coverage>=4.5.3 
