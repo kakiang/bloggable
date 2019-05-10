@@ -7,6 +7,9 @@ env:
   - SECRET_KEY='v)xmimh@!*)^ht5)_+]\z8!wdi86h_ps%f9&mjbh!258^bd/'
 install:
   - pip install -r requirements.txt
+  - pip install codecov
 script:
   - coverage run manage.py test
   # - python manage.py test
+after_success:
+  - codecov

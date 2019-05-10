@@ -7,7 +7,6 @@ __pycache__/
 .pytest_cache/
 *.py[cod]
 *$py.class
-.coverage
 
 local_manage.py
 dev_static/
