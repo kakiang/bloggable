@@ -1,8 +1,4 @@
-{% extends "blog/base.html" %}
-{% load crispy_forms_tags %}
-{% block title %} Blog - About {% endblock title %}
-
-{% block content %}
+{% extends "blog/base.html" %} {% load crispy_forms_tags %} {% block title %} Blog - About {% endblock title %} {% block content %}
 <div class="shadow p-3 mb-5 bg-white col-md-8">
     <form method="POST" novalidate>
         {% csrf_token %}
@@ -21,7 +17,7 @@
                     Forgot your password?</a>
             </div>
 
-            <button class="btn btn-primary p-2 bd-highlight" type="submit">
+            <button id="login_login" class="btn btn-primary p-2 bd-highlight" type="submit">
                 Log In
             </button>
 

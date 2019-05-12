@@ -1,3 +1,5 @@
+sudo: required
+build: trusty
 dist: xenial
 language: python
 python:
@@ -8,8 +10,15 @@ env:
 install:
   - pip install -r requirements.txt
   - pip install codecov
+before_script:
+  - echo $PATH
+  - wget https://chromedriver.storage.googleapis.com/74.0.3729.6/chromedriver_linux64.zip
+  - unzip chromedriver_linux64.zip -d /home/travis/virtualenv/python3.7.3/bin/
+  - export CHROME_BIN=chromium-browser
 script:
   - coverage run manage.py test
+  - python manage.py runserver
+  - python functional_tests.py
   # - python manage.py test
 after_success:
   - codecov
