@@ -1,6 +1,8 @@
 sudo: required
 build: trusty
 dist: xenial
+addons:
+  chrome: stable
 language: python
 python:
   - "3.6"
@@ -13,11 +15,14 @@ install:
 before_script:
   - echo $PATH
   - wget https://chromedriver.storage.googleapis.com/74.0.3729.6/chromedriver_linux64.zip
-  - unzip chromedriver_linux64.zip -d /home/travis/virtualenv/python3.7.3/bin/
-  - export CHROME_BIN=chromium-browser
+  - unzip chromedriver_linux64.zip -d ~/
+  - sudo mv -f ~/chromedriver /usr/local/share
+  - sudo chmod +x /usr/local/share/chromedriver
+  - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
+#  - export CHROME_BIN=chromium-browser
+  - python manage.py runserver
 script:
   - coverage run manage.py test
-  - python manage.py runserver
   - python functional_tests.py
   # - python manage.py test
 after_success:
