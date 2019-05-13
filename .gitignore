@@ -11,4 +11,4 @@ __pycache__/
 local_manage.py
 dev_static/
 dev_settings.py
-
+.coverage

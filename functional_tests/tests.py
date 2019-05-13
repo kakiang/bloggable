@@ -1,9 +1,9 @@
 from selenium import webdriver
-import unittest
+from django.test import LiveServerTestCase
 import time
 
 
-class TestLaunchRegistrationLoginPost(unittest.TestCase):
+class TestLaunchRegistrationLoginPost(LiveServerTestCase):
     
     def setUp(self):
         self.browser = webdriver.Chrome()
@@ -14,7 +14,7 @@ class TestLaunchRegistrationLoginPost(unittest.TestCase):
         self.browser.quit()
     
     def test_register(self):
-        self.browser.get('http://localhost:8000')
+        self.browser.get(self.live_server_url)
         register = self.browser.find_element_by_link_text('Register')
         register.click()
         time.sleep(2)
@@ -89,7 +89,3 @@ class TestLaunchRegistrationLoginPost(unittest.TestCase):
         post_button = self.browser.find_element_by_id('btn_publish')
         post_button.submit()
         time.sleep(3)
-
-
-if __name__ == '__main__':
-    unittest.main()

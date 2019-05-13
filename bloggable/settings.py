@@ -30,15 +30,15 @@ ALLOWED_HOSTS = ['localhost','hervehk.pythonanywhere.com']
 
 
 SELENIUM_WEBDRIVERS = {
-    'default' :{
+    'default': {
         'callable': webdriver.Chrome,
-        'args':(),
-        'kwargs':{},
+        'args': (),
+        'kwargs': {},
     },
-    'firefox':{
-        'callable':webdriver.Firefox,
-        'args':(),
-        'kwargs':{},
+    'firefox': {
+        'callable': webdriver.Firefox,
+        'args': (),
+        'kwargs': {},
     },
 }
 

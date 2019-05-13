@@ -1,17 +1,23 @@
 sudo: required
-build: trusty
 dist: xenial
 addons:
   chrome: stable
+  # apt:
+  #       packages:
+  #         - google-chrome-stable
 language: python
+
 python:
   - "3.6"
   - "3.7"
+
 env:
   - SECRET_KEY='v)xmimh@!*)^ht5)_+]\z8!wdi86h_ps%f9&mjbh!258^bd/'
+
 install:
   - pip install -r requirements.txt
   - pip install codecov
+
 before_script:
   - echo $PATH
   - wget https://chromedriver.storage.googleapis.com/74.0.3729.6/chromedriver_linux64.zip
@@ -19,11 +25,12 @@ before_script:
   - sudo mv -f ~/chromedriver /usr/local/share
   - sudo chmod +x /usr/local/share/chromedriver
   - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
-#  - export CHROME_BIN=chromium-browser
-  - python manage.py runserver
+  - python manage.py collecstatic
+#  - python manage.py runserver
+
 script:
   - coverage run manage.py test
-  - python functional_tests.py
+#  - python functional_tests.py
   # - python manage.py test
 after_success:
   - codecov
