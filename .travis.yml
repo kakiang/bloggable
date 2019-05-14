@@ -25,7 +25,7 @@ before_script:
   - sudo mv -f ~/chromedriver /usr/local/share
   - sudo chmod +x /usr/local/share/chromedriver
   - sudo ln -s /usr/local/share/chromedriver /usr/bin/chromedriver
-  - python manage.py collecstatic
+  - python manage.py collectstatic
 #  - python manage.py runserver
 
 script:
