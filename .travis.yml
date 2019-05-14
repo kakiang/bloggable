@@ -19,12 +19,13 @@ install:
   - pip install codecov
 
 before_script:
+  - whereis google-chrome
   - echo $PATH
   - wget https://chromedriver.storage.googleapis.com/74.0.3729.6/chromedriver_linux64.zip
   - unzip chromedriver_linux64.zip -d ~/
   - sudo mv -f ~/chromedriver /usr/local/share
   - sudo chmod +x /usr/local/share/chromedriver
-  - sudo ln -s /usr/local/share/chromedriver /usr/bin/chromedriver
+  - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
   - python manage.py collectstatic
 #  - python manage.py runserver
 
