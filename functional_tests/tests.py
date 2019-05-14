@@ -8,7 +8,7 @@ class TestLaunchRegistrationLoginPost(LiveServerTestCase):
     def setUp(self):
         self.browser = webdriver.Chrome()
         # self.browser.set_window_size(1366, 768)
-        self.browser.maximize_window()
+        # self.browser.maximize_window()
 
     def tearDown(self):
         self.browser.quit()
@@ -17,7 +17,7 @@ class TestLaunchRegistrationLoginPost(LiveServerTestCase):
         self.browser.get(self.live_server_url)
         register = self.browser.find_element_by_link_text('Register')
         register.click()
-        time.sleep(2)
+        time.sleep(1)
 
         first_name = self.browser.find_element_by_id('id_first_name')
         first_name.send_keys('Selenium')
