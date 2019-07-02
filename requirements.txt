@@ -1,12 +1,12 @@
-Django>=2.2
+Django>=2.2.3
 django-crispy-forms>=1.7.2
 django-taggit>=1.1.0
 django-tinymce4-lite>=1.7.5
-djangorestframework>=3.9.3
+djangorestframework>=3.9.4
 jsmin>=2.2.2
 Pillow>=6.0.0
-python-dotenv>=0.10.1
+python-dotenv>=0.10.3
 pytz>=2019.1
-reportlab>=3.5.20
+reportlab>=3.5.23
 coverage>=4.5.3
 selenium>=3.141.0

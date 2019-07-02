@@ -1,8 +1,4 @@
-{% extends "blog/base.html" %} {% load static %} {% load crispy_forms_tags %}
-{% block head%}{{ form.media }}
-{% endblock %}
-{% block title %} Blog - {{ object.title }} {% endblock title %}
-{% block content %}
+{% extends "blog/base.html" %} {% load static %} {% load crispy_forms_tags %} {% block head%}{{ form.media }} {% endblock %} {% block title %} Blog - {{ object.title }} {% endblock title %} {% block content %}
 
 
 <div class="mb-2">
@@ -11,7 +7,7 @@
             <h1 class="blog-post-title d-inline">
                 {{ post.title|capfirst }}
             </h1>
-            <button class="ml-auto mb-0 d-inline btn btn-default" onclick="window.print();">
+            <button class="ml-auto mb-0 d-inline btn btn-default my-lg-0 d-none d-lg-block" onclick="window.print();">
                 <i class="fa fa-print"></i> Print
             </button>
             <!-- <a href="#" class="ml-auto mb-0 d-inline ">
@@ -19,18 +15,15 @@
             </a> -->
         </div>
         <div class="media pb-3 pt-2">
-            <img class="d-flex mr-3 rounded-circle" src="{{ object.author.profile.image.url }}" width="50" height="50"
-                 alt=""/>
+            <img class="d-flex mr-3 rounded-circle" src="{{ object.author.profile.image.url }}" width="50" height="50" alt="" />
             <div class="media-body">
 
                 <div class="pb-1">
                     <a class="blog-post-author" href="{% url 'user-posts' post.author.username %}">
                         {{ post.author.first_name }} {{ post.author.last_name }}</a>
                 </div>
-                <span class="text-secondary">{{ post.publish|date:"M d, Y " }}</span>
-                {% if post.read_time|time:"i" %}
-                <span class="text-secondary"> &#10029; {{ post.read_time|time:"i" }} min read</span>
-                {% endif %}
+                <span class="text-secondary">{{ post.publish|date:"M d, Y " }}</span> {% if post.read_time|time:"i" %}
+                <span class="text-secondary"> &#10029; {{ post.read_time|time:"i" }} min read</span> {% endif %}
             </div>
         </div>
         <div class="blog-post-content">
@@ -64,21 +57,21 @@
                 </a>
             </div>
 
-<!--            <div class="p-2 bd-highlight badge badge-pill badge-white">-->
+            <!--            <div class="p-2 bd-highlight badge badge-pill badge-white">-->
 
-<!--                <a href="#" id="#clap" class="clap-btn text-decoration-none" data-href="{{ object.get_clap_api_url }}"-->
-<!--                   data-claps="{{ object.users_clap.count }}">-->
-<!--                    {% if user in post.users_clap.all %}-->
-<!--                    <img class="ml-1" src="{% static 'blog/img/clapping_filled.svg' %}" width="25" height="25">-->
-<!--                    {% else %}-->
-<!--                    <img class="ml-1" src="{% static 'blog/img/clapping.svg' %}" width="25" height="25">-->
-<!--                    {% endif %}-->
+            <!--                <a href="#" id="#clap" class="clap-btn text-decoration-none" data-href="{{ object.get_clap_api_url }}"-->
+            <!--                   data-claps="{{ object.users_clap.count }}">-->
+            <!--                    {% if user in post.users_clap.all %}-->
+            <!--                    <img class="ml-1" src="{% static 'blog/img/clapping_filled.svg' %}" width="25" height="25">-->
+            <!--                    {% else %}-->
+            <!--                    <img class="ml-1" src="{% static 'blog/img/clapping.svg' %}" width="25" height="25">-->
+            <!--                    {% endif %}-->
 
-<!--                    <span class="count-clap mr-1" style="color: #007bff;">-->
-<!--                    {% with count=post.users_clap.count %} {{ count }} clap{{ count|pluralize }} {% endwith %}-->
-<!--                    </span>-->
-<!--                </a>-->
-<!--            </div>-->
+            <!--                    <span class="count-clap mr-1" style="color: #007bff;">-->
+            <!--                    {% with count=post.users_clap.count %} {{ count }} clap{{ count|pluralize }} {% endwith %}-->
+            <!--                    </span>-->
+            <!--                </a>-->
+            <!--            </div>-->
 
             <div class="p-2 bd-highlight">
                 <!-- <a href="#"
@@ -87,8 +80,7 @@
                 data-whatever="@mdo">
                 <i class="fa fa-envelope fa-fw" aria-hidden="true"></i></a> -->
 
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -141,8 +133,7 @@
             {% csrf_token %}
             <!-- <div class="form-group"> -->
             <div class="media mb-2">
-                <img class="d-flex mr-3 rounded-circle" src="{{ user.profile.image.url }}" width="50" height="50"
-                     alt=""/>
+                <img class="d-flex mr-3 rounded-circle" src="{{ user.profile.image.url }}" width="50" height="50" alt="" />
                 <div class="media-body">
                     <legend> Add your comment</legend>
                     {{ comment_form|crispy}}
@@ -173,8 +164,7 @@
 
         {% for comment in comments %}
         <div class="media mb-4">
-            <img class="d-flex mr-3 rounded-circle bg-white" src="{{ comment.author.profile.image.url }}" width="50"
-                 height="50" alt=""/>
+            <img class="d-flex mr-3 rounded-circle bg-white" src="{{ comment.author.profile.image.url }}" width="50" height="50" alt="" />
             <div class="media-body">
                 <div>
                     <h5 class="d-inline">
@@ -251,5 +241,4 @@
         })
         // { % endblock %
         // }
-
 </script>
